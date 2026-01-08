@@ -1,0 +1,13 @@
+{
+  "name": "The 2026 Glow Up",
+  "short_name": "Glow Up",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07070c",
+  "theme_color": "#0b0b12",
+  "description": "Track your reboot: daily flow, workouts, and progress.",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
