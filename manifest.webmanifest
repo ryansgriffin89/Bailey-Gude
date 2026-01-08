@@ -1,12 +1,12 @@
 {
-  "name": "The 2026 Glow Up",
-  "short_name": "Glow Up",
+  "name": "Bailey’s Glow Up",
+  "short_name": "Bailey Glow",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#07070c",
   "theme_color": "#0b0b12",
-  "description": "Track your reboot: daily flow, workouts, and progress.",
+  "description": "Daily flow, workouts, streaks, photos, and progress — all stored locally on your phone.",
   "icons": [
     { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
   ]
