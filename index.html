@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The 2026 Glow Up</title>
+
+<link rel="manifest" href="./manifest.webmanifest" />
+<meta name="theme-color" content="#0b0b12" />
+
+<style>
+:root{
+  --bg:#07070c;
+  --card:rgba(255,255,255,0.08);
+  --stroke:rgba(255,255,255,0.14);
+  --text:rgba(255,255,255,0.92);
+  --muted:rgba(255,255,255,0.65);
+  --pink:#ff3bd4;
+  --cyan:#39f5ff;
+  --lime:#a6ff4d;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:
+    radial-gradient(900px 600px at 10% -10%, rgba(255,59,212,.25), transparent 60%),
+    radial-gradient(800px 600px at 90% 0%, rgba(57,245,255,.22), transparent 55%),
+    linear-gradient(180deg,#07070c,#0b0b12);
+  color:var(--text);
+  padding-bottom:100px;
+}
+
+header{
+  padding:32px 20px 24px;
+  text-align:center;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--stroke);
+}
+
+h1{
+  margin:0;
+  font-size:2rem;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+.subtitle{
+  margin-top:6px;
+  font-size:.8rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.container{
+  max-width:620px;
+  margin:-12px auto 40px;
+  padding:0 14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:18px;
+  backdrop-filter:blur(14px);
+}
+
+.section{
+  margin:32px 8px 12px;
+  font-size:.75rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:900;
+  color:var(--muted);
+}
+
+.tracker{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+
+.bubble{
+  aspect-ratio:1;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:.75rem;
+  cursor:pointer;
+  user-select:none;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--stroke);
+  color:var(--muted);
+  transition:.2s;
+}
+.bubble.active{
+  background:linear-gradient(180deg,var(--pink),var(--cyan));
+  color:#07070c;
+  border-color:transparent;
+}
+
+.workout{
+  margin-bottom:16px;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+}
+
+.workout-header{
+  padding:16px;
+  background:rgba(255,255,255,.04);
+  font-weight:900;
+}
+
+.workout-body{
+  padding:16px;
+  border-top:1px solid var(--stroke);
+  color:var(--muted);
+}
+
+button{
+  border:none;
+  border-radius:999px;
+  padding:14px 22px;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--pink),var(--cyan),var(--lime));
+  color:#07070c;
+}
+
+.fixed-btn{
+  position:fixed;
+  bottom:24px;
+  left:0; right:0;
+  display:flex;
+  justify-content:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>The Reboot</h1>
+  <div class="subtitle">Her Era • 2026</div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <div class="section">26 LB COUNTDOWN</div>
+    <div class="tracker" id="tracker"></div>
+  </div>
+
+  <div class="section">WORKOUTS</div>
+
+  <div class="workout">
+    <div class="workout-header">Monday — Leg Day</div>
+    <div class="workout-body">Squats • Lunges • Glutes</div>
+  </div>
+
+  <div class="workout">
+    <div class="workout-header">Tuesday — Core</div>
+    <div class="workout-body">Pilates • Abs</div>
+  </div>
+
+  <div class="workout">
+    <div class="workout-header">Wednesday — Upper Body</div>
+    <div class="workout-body">Press • Rows</div>
+  </div>
+
+  <div class="workout">
+    <div class="workout-header">Thursday — Full Body</div>
+    <div class="workout-body">Sweat • Burn</div>
+  </div>
+
+</div>
+
+<div class="fixed-btn">
+  <button onclick="celebrate()">I DID IT 🎉</button>
+</div>
+
+<script>
+const tracker = document.getElementById("tracker");
+let progress = JSON.parse(localStorage.getItem("progress")) || [];
+
+for(let i=1;i<=26;i++){
+  const b=document.createElement("div");
+  b.className="bubble";
+  b.textContent=i;
+  if(progress.includes(i)) b.classList.add("active");
+
+  b.onclick=()=>{
+    b.classList.toggle("active");
+    if(b.classList.contains("active")){
+      progress.push(i);
+    }else{
+      progress=progress.filter(x=>x!==i);
+    }
+    localStorage.setItem("progress",JSON.stringify(progress));
+  };
+  tracker.appendChild(b);
+}
+
+function celebrate(){
+  alert("PROUD OF YOU 💖");
+}
+</script>
+
+</body>
+</html>
