@@ -1,2 +1,2 @@
-# Bailey-Guide
+# Bailey-Gude
 Personal wellness tracker
