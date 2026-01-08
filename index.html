@@ -348,6 +348,13 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
   color:rgba(255,255,255,0.86);
 }
 
+.pro-tip{
+  margin-top:10px;display:inline-block;padding:8px 10px;border-radius:14px;font-weight:950;font-size:0.76rem;
+  background:rgba(255,159,46,0.10);
+  border:1px solid rgba(255,159,46,0.22);
+  color:rgba(255,255,255,0.86);
+}
+
 .confetti-btn-container{
   position:fixed;bottom:26px;left:0;right:0;display:flex;justify-content:center;z-index:100;pointer-events:none;
 }
@@ -358,11 +365,19 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
 }
 .confetti-btn:active{transform:scale(0.97)}
 
+/* Confetti (hardened visibility) */
 .confetti{
-  position:fixed;width:10px;height:10px;border-radius:3px;
-  animation:fall linear forwards;pointer-events:none;z-index:999;
+  position:fixed;
+  width:10px;
+  height:10px;
+  border-radius:3px;
+  pointer-events:none;
+  z-index:9999;          /* was 999 */
+  animation:fall linear forwards;
 }
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
+@keyframes fall{
+  to{transform:translateY(100vh) rotate(720deg)}
+}
 
 @media (prefers-reduced-motion: reduce){
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -435,6 +450,7 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
     <div class="schedule-item"><div class="time">08:30</div><div class="activity"><strong>Son Drop-off (M/W/F)</strong></div></div>
     <div class="schedule-item"><div class="time">12:30</div><div class="activity"><strong>High Protein Lunch</strong><span>Volume eating. Fill up on veggies + protein.</span></div></div>
     <div class="schedule-item"><div class="time">14:30</div><div class="activity"><strong>The Pickup</strong></div></div>
+
     <div class="schedule-item">
       <div class="time">15:15</div>
       <div class="activity">
@@ -443,6 +459,7 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
         <span class="tag move">🔥 Lift</span>
       </div>
     </div>
+
     <div class="schedule-item">
       <div class="time">19:45</div>
       <div class="activity">
@@ -451,6 +468,7 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
         <span class="tag move">✅ Backup</span>
       </div>
     </div>
+
     <div class="schedule-item">
       <div class="time">15:30</div>
       <div class="activity">
@@ -459,6 +477,7 @@ h1{margin:0;font-weight:1000;letter-spacing:-1.2px;font-size:1.85rem}
         <span class="tag food">⚡ No Crash</span>
       </div>
     </div>
+
     <div class="schedule-item">
       <div class="time">21:00</div>
       <div class="activity">
@@ -1089,17 +1108,23 @@ function initStack() {
 initStack();
 
 /** =========================
- *  Confetti (UNCHANGED RULES)
+ *  Confetti (rules unchanged; reliability hardened)
  *  ========================= */
 function fireConfetti() {
   const colors = ["#ff3bd4", "#39f5ff", "#a6ff4d", "#8a5cff", "#ff9f2e"];
   for (let i = 0; i < 56; i++) {
     const conf = document.createElement("div");
     conf.classList.add("confetti");
+
+    // Hardening: always start above screen + always above everything
+    conf.style.top = "-12px";
+    conf.style.zIndex = "9999";
+
     conf.style.left = Math.random() * 100 + "vw";
     conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     conf.style.animationDuration = (Math.random() * 2 + 1.8) + "s";
     conf.style.opacity = String(Math.random() * 0.6 + 0.4);
+
     document.body.appendChild(conf);
     setTimeout(() => conf.remove(), 4200);
   }
