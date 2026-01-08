@@ -9,7 +9,6 @@
 <meta name="theme-color" content="#0b0b12" />
 
 <style>
-/* === CORE STYLES (unchanged aesthetic) === */
 :root{
   --bg0:#07070c;--bg1:#0b0b12;
   --pink:#ff3bd4;--cyan:#39f5ff;--lime:#a6ff4d;
@@ -29,27 +28,21 @@ h1{margin:0;font-size:1.85rem;font-weight:1000}
 .container{max-width:640px;margin:auto;padding:0 14px}
 .card{background:rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
 .section-label{margin:34px 8px 14px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.80);font-weight:900}
-
-/* Buttons */
 button{font-family:inherit;cursor:pointer}
 .btn{border:none;border-radius:999px;padding:14px 20px;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--cyan));color:#07070c}
-
-/* Confetti */
 .confetti{position:fixed;width:10px;height:10px;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
-
-/* Inputs & textareas */
 input, textarea{
   width:100%;padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.92);
   font-size:.92rem;outline:none;margin-top:8px;
 }
 textarea{resize:vertical;height:80px}
+hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
 </style>
 </head>
 
 <body>
-
 <header>
   <h1>Bailey’s Guide to Wellness</h1>
   <div class="subtitle" id="dailyHeader"></div>
@@ -57,182 +50,362 @@ textarea{resize:vertical;height:80px}
 
 <div class="container">
 
-<!-- START HERE -->
-<div class="card">
-  <strong>Goal:</strong> 166 → 140<br>
-  <strong>Plan:</strong> 4×/week · 30 minutes<br>
-  <strong>Non-negotiables:</strong> Protein · Steps · Sleep<br><br>
-  <em>If you do only ONE thing today:</em><br>
-  <strong id="oneThing"></strong>
-</div>
-
-<!-- DAILY MOTIVATION -->
-<div class="card">
-  <strong>Today’s Motivation</strong>
-  <p id="dailyQuote"></p>
-  <p style="font-style:italic" id="dailyVerse"></p>
-</div>
-
-<!-- WEEKLY CHECK IN -->
-<div class="card">
-  <strong>Weekly Check-In</strong>
-  <input id="ciWeight" placeholder="Weight" />
-  <input id="ciWaist" placeholder="Waist (optional)" />
-  <textarea id="ciWins" placeholder="Wins this week"></textarea>
-  <textarea id="ciStruggles" placeholder="Struggles"></textarea>
-  <button class="btn" onclick="saveCheckIn()">Save Check-In</button>
-</div>
-
-<!-- PROGRESS PHOTOS -->
-<div class="card">
-  <strong>Progress Photos (max 3/day)</strong>
-  <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
-  <div id="photoPreview" style="margin-top:12px;"></div>
-</div>
-
-<!-- WORKOUT LOG -->
-<div class="card">
-  <strong>Today’s Workout Log</strong>
-  <textarea id="workoutLog" placeholder="Weights, reps, notes…"></textarea>
-  <button class="btn" onclick="saveWorkout()">Save Workout</button>
-</div>
-
-<!-- END OF PART 1 MARKUP --><!-- =========================
-     PART 2 — Remaining Markup + All Scripts (FIXED)
-     Paste this directly AFTER Part 1
-     ========================= -->
-
-<!-- STACK (MISSING BEFORE) -->
-<div class="card" id="stackCard">
-  <strong>Daily Stack (Simple)</strong>
-  <p style="color:rgba(255,255,255,.72);margin-top:8px;">
-    Keep it basic. This is meant to be easy, not overwhelming.
-  </p>
-
-  <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-    <strong>Morning (06:50)</strong>
-    <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Water (big glass)</div>
-    <div style="color:rgba(255,255,255,.74);">• Electrolytes (optional)</div>
-    <div style="color:rgba(255,255,255,.74);">• Multivitamin (if you take one)</div>
+  <!-- START HERE -->
+  <div class="card">
+    <strong>Goal:</strong> 166 → 140<br>
+    <strong>Plan:</strong> 4×/week · 30 minutes<br>
+    <strong>Non-negotiables:</strong> Protein · Steps · Sleep<br><br>
+    <em>If you do only ONE thing today:</em><br>
+    <strong id="oneThing"></strong>
   </div>
 
-  <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-    <strong>Workout Window</strong>
-    <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Protein after (shake or meal)</div>
-    <div style="color:rgba(255,255,255,.74);">• Creatine daily (optional)</div>
+  <!-- DAILY MOTIVATION -->
+  <div class="card">
+    <strong>Today’s Motivation</strong>
+    <p id="dailyQuote"></p>
+    <p style="font-style:italic" id="dailyVerse"></p>
   </div>
 
-  <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-    <strong>Night (Wind-down)</strong>
-    <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Stretch 3–5 minutes</div>
-    <div style="color:rgba(255,255,255,.74);">• Magnesium glycinate (optional)</div>
+  <!-- WEEKLY CHECK IN -->
+  <div class="card">
+    <strong>Weekly Check-In</strong>
+    <input id="ciWeight" placeholder="Weight" />
+    <input id="ciWaist" placeholder="Waist (optional)" />
+    <textarea id="ciWins" placeholder="Wins this week"></textarea>
+    <textarea id="ciStruggles" placeholder="Struggles"></textarea>
+    <button class="btn" onclick="saveCheckIn()">Save Check-In</button>
   </div>
-</div>
 
-<!-- CYCLE SYNC -->
-<div class="card">
-  <strong>Energy Mode</strong>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
-    <button class="btn" style="flex:1;min-width:160px;" onclick="setCycle('follicular')">High Energy ⚡️</button>
-    <button class="btn" style="flex:1;min-width:160px;filter:saturate(.85) brightness(.95);" onclick="setCycle('luteal')">Low Energy 🩸</button>
+  <!-- PROGRESS PHOTOS -->
+  <div class="card">
+    <strong>Progress Photos (max 3/day)</strong>
+    <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
+    <div id="photoPreview" style="margin-top:12px;"></div>
   </div>
-  <p id="cycleMessage" style="margin-top:12px;color:rgba(255,255,255,.82)"></p>
-</div>
 
-<!-- TODAY MODE -->
-<div class="card" id="todayCard">
-  <strong>Today Mode</strong>
-  <p id="todayFocus" style="margin-top:10px;color:rgba(255,255,255,.82)"></p>
-
-  <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
-
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
-    <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:800;font-size:.9rem;">0 / 4 done</span>
-    <button style="border:none;background:transparent;color:rgba(57,245,255,.95);font-weight:900" onclick="resetToday()">Reset today</button>
+  <!-- WORKOUT LOG -->
+  <div class="card">
+    <strong>Today’s Workout Log</strong>
+    <textarea id="workoutLog" placeholder="Weights, reps, notes…"></textarea>
+    <button class="btn" onclick="saveWorkout()">Save Workout</button>
   </div>
-</div>
 
-<!-- THE 26 LB COUNTDOWN -->
-<div class="card">
-  <strong>The 26 lb Countdown</strong>
-  <p style="margin-top:8px;color:rgba(255,255,255,.72)">Tap a bubble when you lose a pound.</p>
-  <div id="trackerGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:12px;"></div>
+  <!-- STACK (simple) -->
+  <div class="card" id="stackCard">
+    <strong>Daily Stack (Simple)</strong>
+    <p style="color:rgba(255,255,255,.72);margin-top:8px;">
+      Keep it basic. This is meant to be easy, not overwhelming.
+    </p>
 
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;">
-    <span id="trackerCount" style="color:rgba(255,255,255,.70);font-weight:900;">0 / 26 complete</span>
-    <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="resetProgress()">Reset</button>
-  </div>
-</div>
-
-<!-- DAILY FLOW -->
-<div class="section-label">THE DAILY FLOW</div>
-<div class="card">
-  <div style="display:grid;gap:12px;">
-    <div><strong>06:50</strong> — Wake & Hydrate <span style="color:rgba(255,255,255,.70)">• see stack (above)</span></div>
-    <div><strong>07:15</strong> — Daughter drop-off</div>
-    <div><strong>08:30</strong> — Son drop-off (M/W/F)</div>
-    <div><strong>12:30</strong> — High-protein lunch <span style="color:rgba(255,255,255,.70)">• protein + veg</span></div>
-    <div><strong>14:30</strong> — Pickup</div>
-
-    <div style="margin-top:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Workout Window (Primary)</strong><br>
-      <span style="color:rgba(255,255,255,.75)">3:15–3:45 • 30 minutes</span>
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <strong>Morning (06:50)</strong>
+      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Water (big glass)</div>
+      <div style="color:rgba(255,255,255,.74);">• Electrolytes (optional)</div>
+      <div style="color:rgba(255,255,255,.74);">• Multivitamin (if you take one)</div>
     </div>
 
-    <div style="padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Workout Window (Backup)</strong><br>
-      <span style="color:rgba(255,255,255,.75)">7:45–8:15 • after kids down</span>
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <strong>Workout Window</strong>
+      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Protein after (shake or meal)</div>
+      <div style="color:rgba(255,255,255,.74);">• Creatine daily (optional)</div>
     </div>
 
-    <div><strong>15:30</strong> — Snack: Protein <span style="color:rgba(255,255,255,.70)">• shake, jerky, turkey roll-ups</span></div>
-    <div><strong>21:00</strong> — Wind-down <span style="color:rgba(255,255,255,.70)">• stretch / cozy walk</span></div>
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <strong>Night (Wind-down)</strong>
+      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Stretch 3–5 minutes</div>
+      <div style="color:rgba(255,255,255,.74);">• Magnesium glycinate (optional)</div>
+    </div>
   </div>
-</div>
 
-<!-- WORKOUTS -->
-<div class="section-label">THE MOVES (30 MIN)</div>
+  <!-- CYCLE SYNC -->
+  <div class="card">
+    <strong>Energy Mode</strong>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+      <button class="btn" style="flex:1;min-width:160px;" onclick="setCycle('follicular')">High Energy ⚡️</button>
+      <button class="btn" style="flex:1;min-width:160px;filter:saturate(.85) brightness(.95);" onclick="setCycle('luteal')">Low Energy 🩸</button>
+    </div>
+    <p id="cycleMessage" style="margin-top:12px;color:rgba(255,255,255,.82)"></p>
+  </div>
 
-<!-- HELP CARD -->
-<div class="card">
-  <strong>How it should feel (quick rules)</strong>
-  <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.5">
-    <li><strong>You SHOULD feel:</strong> muscles working, controlled burn, steady breathing.</li>
-    <li><strong>You should NOT feel:</strong> sharp joint pain, pinching in low back/neck, numbness/tingling.</li>
-    <li><strong>Form rule:</strong> if form breaks, stop the set—even if reps aren’t done.</li>
-    <li><strong>Progress rule:</strong> add <strong>+1–2 reps</strong> or <strong>+2.5–5 lbs</strong> when it feels “too easy”.</li>
-  </ul>
-</div>
+  <!-- TODAY MODE -->
+  <div class="card" id="todayCard">
+    <strong>Today Mode</strong>
+    <p id="todayFocus" style="margin-top:10px;color:rgba(255,255,255,.82)"></p>
+    <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
+      <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:800;font-size:.9rem;">0 / 4 done</span>
+      <button style="border:none;background:transparent;color:rgba(57,245,255,.95);font-weight:900" onclick="resetToday()">Reset today</button>
+    </div>
+  </div>
 
-<!-- MONDAY (unchanged from your version except button kept) -->
-<!-- KEEP your Monday block as-is above this point in your file -->
-<!-- (You already pasted Monday; no changes required.) -->
+  <!-- THE 26 LB COUNTDOWN -->
+  <div class="card">
+    <strong>The 26 lb Countdown</strong>
+    <p style="margin-top:8px;color:rgba(255,255,255,.72)">Tap a bubble when you lose a pound.</p>
+    <div id="trackerGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:12px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;">
+      <span id="trackerCount" style="color:rgba(255,255,255,.70);font-weight:900;">0 / 26 complete</span>
+      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="resetProgress()">Reset</button>
+    </div>
+  </div>
 
-<!-- TUESDAY (ADD LOG INPUTS + SAVE BUTTON) -->
-<!-- Add these inputs inside each Tuesday exercise (below each exercise description) -->
-<script>
-/* Helper to inject logging inputs for all exercises that didn't include them */
-function ensureLogInputs(){
-  document.querySelectorAll(".ex[data-exid]").forEach(ex=>{
-    if(ex.querySelector("input.log")) return;
-    const wrap = document.createElement("div");
-    wrap.style.marginTop = "10px";
-    wrap.innerHTML = `
-      <input class="log" placeholder="Last: ___ (reps/time)" />
-      <input class="log" placeholder="Today: ___ (reps/time)" />
-    `;
-    ex.appendChild(wrap);
-  });
-}
-</script>
+  <!-- DAILY FLOW -->
+  <div class="section-label">THE DAILY FLOW</div>
+  <div class="card">
+    <div style="display:grid;gap:12px;">
+      <div><strong>06:50</strong> — Wake & Hydrate <span style="color:rgba(255,255,255,.70)">• see stack (above)</span></div>
+      <div><strong>07:15</strong> — Daughter drop-off</div>
+      <div><strong>08:30</strong> — Son drop-off (M/W/F)</div>
+      <div><strong>12:30</strong> — High-protein lunch <span style="color:rgba(255,255,255,.70)">• protein + veg</span></div>
+      <div><strong>14:30</strong> — Pickup</div>
 
-<!-- PROGRESS PHOTOS GALLERY -->
-<div class="section-label">PROGRESS PHOTO GALLERY</div>
-<div class="card">
-  <strong>Browse saved days</strong>
-  <p style="color:rgba(255,255,255,.72);margin-top:8px;">All photos are stored locally on this device (not uploaded anywhere).</p>
-  <div id="galleryList" style="display:grid;gap:12px;margin-top:12px;"></div>
-  <button class="btn" style="margin-top:12px;width:100%" onclick="clearAllPhotos()">Clear ALL stored photos</button>
-</div>
+      <div style="margin-top:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Workout Window (Primary)</strong><br>
+        <span style="color:rgba(255,255,255,.75)">3:15–3:45 • 30 minutes</span>
+      </div>
+
+      <div style="padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Workout Window (Backup)</strong><br>
+        <span style="color:rgba(255,255,255,.75)">7:45–8:15 • after kids down</span>
+      </div>
+
+      <div><strong>15:30</strong> — Snack: Protein <span style="color:rgba(255,255,255,.70)">• shake, jerky, turkey roll-ups</span></div>
+      <div><strong>21:00</strong> — Wind-down <span style="color:rgba(255,255,255,.70)">• stretch / cozy walk</span></div>
+    </div>
+  </div>
+
+  <!-- WORKOUTS -->
+  <div class="section-label">THE MOVES (30 MIN)</div>
+
+  <div class="card">
+    <strong>How it should feel (quick rules)</strong>
+    <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.5">
+      <li><strong>You SHOULD feel:</strong> muscles working, controlled burn, steady breathing.</li>
+      <li><strong>You should NOT feel:</strong> sharp joint pain, pinching in low back/neck, numbness/tingling.</li>
+      <li><strong>Form rule:</strong> if form breaks, stop the set—even if reps aren’t done.</li>
+      <li><strong>Progress rule:</strong> add <strong>+1–2 reps</strong> or <strong>+2.5–5 lbs</strong> when it feels “too easy”.</li>
+    </ul>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="card workout-card" data-day="monday">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <strong>Monday: Leg Day</strong>
+        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (5 min): brisk walk + hip circles</div>
+      </div>
+      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('monday')">
+        <span id="chev-monday">▾</span> <span id="lbl-monday">Collapse</span>
+      </button>
+    </div>
+
+    <div id="body-monday" style="margin-top:14px;overflow:hidden;">
+      <div class="ex" data-exid="monday-goblet">
+        <strong>1) Goblet Squat</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)">
+          <span class="sets" data-high="3" data-low="2"></span> × 10–12 • Rest 60s
+        </div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Do:</em> chest up, knees track over toes. <em>Don’t:</em> collapse knees inward.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="monday-lunge">
+        <strong>2) Reverse Lunge</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)">
+          <span class="sets" data-high="3" data-low="2"></span> × 8–10/leg • Rest 60s
+        </div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> glute/quad. <em>Don’t:</em> slam knee or lean forward.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="monday-hiphinge">
+        <strong>3) DB Romanian Deadlift</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)">
+          <span class="sets" data-high="3" data-low="2"></span> × 10–12 • Rest 60s
+        </div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> hamstrings stretching. <em>Don’t:</em> round back.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="monday-finisher">
+        <strong>4) 2-Min Finisher: Wall Sit</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)">2 rounds: 45s hold + 15s rest</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> quad burn. <em>Don’t:</em> hold breath.</div>
+      </div>
+
+      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Cool-down (3–5 min):</strong><br>
+        <span style="color:rgba(255,255,255,.72)">Quad stretch • Hamstring stretch • Figure-4 glute stretch</span>
+      </div>
+
+      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="card workout-card" data-day="tuesday">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <strong>Tuesday: Core + Pilates</strong>
+        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (3 min): cat/cow + deep breaths</div>
+      </div>
+      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('tuesday')">
+        <span id="chev-tuesday">▾</span> <span id="lbl-tuesday">Collapse</span>
+      </button>
+    </div>
+
+    <div id="body-tuesday" style="margin-top:14px;overflow:hidden;">
+      <div class="ex" data-exid="tuesday-birddog">
+        <strong>1) Bird Dog</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 10–12/side • Rest 30s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> deep core. <em>Don’t:</em> rotate hips.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="tuesday-deadbug">
+        <strong>2) Dead Bug</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 8–10/side • Rest 30s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>You should feel:</em> abs holding spine. <em>Don’t:</em> low back arch.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="tuesday-sideplank">
+        <strong>3) Side Plank</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 20–30s/side • Rest 30s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> obliques. <em>Don’t:</em> sink shoulder.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="tuesday-glutebridge">
+        <strong>4) Glute Bridge</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 12–15 • Rest 30–45s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> glutes at the top. <em>Don’t:</em> push through low back.</div>
+      </div>
+
+      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Cool-down (3 min):</strong><br>
+        <span style="color:rgba(255,255,255,.72)">Child’s pose • Supine twist • Deep breathing</span>
+      </div>
+
+      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div class="card workout-card" data-day="wednesday">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <strong>Wednesday: Upper Body</strong>
+        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (5 min): arm circles + band pull-aparts (or light rows)</div>
+      </div>
+      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('wednesday')">
+        <span id="chev-wednesday">▾</span> <span id="lbl-wednesday">Collapse</span>
+      </button>
+    </div>
+
+    <div id="body-wednesday" style="margin-top:14px;overflow:hidden;">
+      <div class="ex" data-exid="wed-press">
+        <strong>1) DB Overhead Press</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 8–10 • Rest 60s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> shoulders/triceps. <em>Don’t:</em> arch low back.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="wed-row">
+        <strong>2) DB Row</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 10–12 • Rest 60s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> lats/upper back. <em>Don’t:</em> shrug shoulder to ear.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="wed-lateral">
+        <strong>3) Lateral Raise</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)"><span class="sets" data-high="3" data-low="2"></span> × 12–15 • Rest 45s</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> side delts. <em>Don’t:</em> swing weights.</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="wed-arms">
+        <strong>4) Arms Finisher</strong>
+        <div style="margin-top:6px;color:rgba(255,255,255,.75)">2 rounds: curls 12 + tricep kickbacks 12 (minimal rest)</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> pump. <em>Don’t:</em> lock elbows hard.</div>
+      </div>
+
+      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Cool-down (3–5 min):</strong><br>
+        <span style="color:rgba(255,255,255,.72)">Chest doorway stretch • Upper back stretch • Neck gentle stretch</span>
+      </div>
+
+      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+    </div>
+  </div>
+
+  <!-- THURSDAY (NOW LOGGABLE) -->
+  <div class="card workout-card" data-day="thursday">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <strong>Thursday: Full Body Circuit</strong>
+        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (5 min): walk + bodyweight squats + shoulder rolls</div>
+      </div>
+      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('thursday')">
+        <span id="chev-thursday">▾</span> <span id="lbl-thursday">Collapse</span>
+      </button>
+    </div>
+
+    <div id="body-thursday" style="margin-top:14px;overflow:hidden;">
+      <div style="color:rgba(255,255,255,.78)">
+        <strong>Circuit:</strong> do moves 1–4, rest 60–90s, repeat.
+        <div style="margin-top:8px;"><span class="sets" data-high="3" data-low="2" data-label="rounds"></span> total</div>
+      </div>
+
+      <hr>
+
+      <div class="ex" data-exid="thu-squat">
+        <strong>1) Squat</strong>
+        <div style="color:rgba(255,255,255,.75);margin-top:6px;">10–12 reps</div>
+      </div>
+
+      <div class="ex" data-exid="thu-push">
+        <strong>2) Push (incline push-up or DB press)</strong>
+        <div style="color:rgba(255,255,255,.75);margin-top:6px;">8–12 reps</div>
+      </div>
+
+      <div class="ex" data-exid="thu-pull">
+        <strong>3) Pull (row)</strong>
+        <div style="color:rgba(255,255,255,.75);margin-top:6px;">10–12 reps</div>
+      </div>
+
+      <div class="ex" data-exid="thu-core">
+        <strong>4) Core (mountain climbers)</strong>
+        <div style="color:rgba(255,255,255,.75);margin-top:6px;">20–30 seconds</div>
+      </div>
+
+      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+        <strong>Cool-down (3 min):</strong><br>
+        <span style="color:rgba(255,255,255,.72)">Hamstring stretch • Quad stretch • Child’s pose</span>
+      </div>
+
+      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS PHOTOS GALLERY -->
+  <div class="section-label">PROGRESS PHOTO GALLERY</div>
+  <div class="card">
+    <strong>Browse saved days</strong>
+    <p style="color:rgba(255,255,255,.72);margin-top:8px;">All photos are stored locally on this device (not uploaded anywhere).</p>
+    <div id="galleryList" style="display:grid;gap:12px;margin-top:12px;"></div>
+    <button class="btn" style="margin-top:12px;width:100%" onclick="clearAllPhotos()">Clear ALL stored photos</button>
+  </div>
 
 </div><!-- /.container -->
 
@@ -242,6 +415,20 @@ function ensureLogInputs(){
 </div>
 
 <script>
+/* ============ Helper: add log inputs to any .ex with data-exid ============ */
+function ensureLogInputs(){
+  document.querySelectorAll(".ex[data-exid]").forEach(ex=>{
+    if(ex.querySelector("input.log")) return;
+    const wrap = document.createElement("div");
+    wrap.style.marginTop = "10px";
+    wrap.innerHTML = `
+      <input class="log" placeholder="Last: ___ (lbs/reps/time)" />
+      <input class="log" placeholder="Today: ___ (lbs/reps/time)" />
+    `;
+    ex.appendChild(wrap);
+  });
+}
+
 /** =========================
  *  STORAGE
  *  ========================= */
@@ -313,32 +500,26 @@ const verses = [
 document.getElementById("dailyQuote").textContent = quotes[dateSeed() % quotes.length];
 document.getElementById("dailyVerse").textContent = verses[(dateSeed() + 2) % verses.length];
 
-/** CYCLE MODE + AUTO SETS (FIXED FOR THURSDAY ROUNDS) */
+/** CYCLE MODE + AUTO SETS */
 let currentPhase = localStorage.getItem(STORAGE.phase) || "follicular";
-
 function applyAutoSets() {
   const isLow = currentPhase === "luteal";
-
   document.querySelectorAll(".sets").forEach(el => {
     const high = Number(el.getAttribute("data-high") || "3");
     const low = Number(el.getAttribute("data-low") || "2");
     const n = isLow ? low : high;
-
-    const label = el.getAttribute("data-label") || "sets"; // NEW
+    const label = el.getAttribute("data-label") || "sets";
     el.textContent = `${n} ${label}`;
   });
-
   document.getElementById("cycleMessage").textContent = isLow
     ? "Low Energy mode: fewer sets, lighter weights, still a win."
     : "High Energy mode: full sets, push progress safely.";
 }
-
 function setCycle(phase) {
   currentPhase = phase;
   localStorage.setItem(STORAGE.phase, phase);
   applyAutoSets();
 }
-
 applyAutoSets();
 
 /** TODAY FOCUS */
@@ -358,7 +539,6 @@ document.getElementById("todayFocus").textContent =
 /** CHECKLIST */
 const checklistEl = document.getElementById("checklist");
 const checkMetaText = document.getElementById("checkMetaText");
-
 const defaultChecklist = [
   { id: "water", title: "Hydrate", sub: "Water + morning essentials" },
   { id: "protein", title: "Protein", sub: "High-protein lunch + snack" },
@@ -491,8 +671,8 @@ function toggleWorkout(day) {
   const chev = document.getElementById(`chev-${day}`);
   const lbl = document.getElementById(`lbl-${day}`);
   const isCollapsed = Boolean(workoutCollapsed[day]);
-
   const next = !isCollapsed;
+
   workoutCollapsed[day] = next;
   localStorage.setItem(STORAGE.workoutCollapsed, JSON.stringify(workoutCollapsed));
 
@@ -547,9 +727,8 @@ function saveExerciseLogs(){
   const key = todayKey();
   all[key] = all[key] || {};
 
-  document.querySelectorAll(".ex").forEach(ex => {
+  document.querySelectorAll(".ex[data-exid]").forEach(ex => {
     const id = ex.getAttribute("data-exid");
-    if (!id) return;
     const inputs = Array.from(ex.querySelectorAll("input.log")).map(i => i.value.trim()).filter(Boolean);
     if (inputs.length) all[key][id] = inputs;
   });
@@ -557,9 +736,6 @@ function saveExerciseLogs(){
   localStorage.setItem(STORAGE.exerciseLogs, JSON.stringify(all));
   alert("Exercise logs saved locally ✅");
 }
-
-/** Inject missing logging inputs (Tue/Wed/Thu) */
-ensureLogInputs();
 
 /** PHOTOS */
 function loadPhotosAll(){ return safeParse(localStorage.getItem(STORAGE.photos), {}); }
@@ -737,7 +913,7 @@ function clearAllPhotos(){
 renderTodayPhotos();
 renderGallery();
 
-/** CONFETTI (unchanged) */
+/** CONFETTI */
 function fireConfetti() {
   const colors = ["#ff3bd4", "#39f5ff", "#a6ff4d", "#8a5cff", "#ff9f2e"];
   for (let i = 0; i < 56; i++) {
@@ -753,4 +929,10 @@ function fireConfetti() {
     setTimeout(() => conf.remove(), 4200);
   }
 }
-  </script>
+
+/* Make every exercise log-ready (Tue/Wed/Thu + anything you add later) */
+ensureLogInputs();
+</script>
+
+</body>
+        </html>
