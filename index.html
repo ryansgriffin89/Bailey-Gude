@@ -11,38 +11,179 @@
 <style>
 :root{
   --bg0:#07070c;--bg1:#0b0b12;
-  --pink:#ff3bd4;--cyan:#39f5ff;--lime:#a6ff4d;
+  --pink:#ff3bd4;--cyan:#39f5ff;--lime:#a6ff4d;--violet:#8a5cff;--orange:#ff9f2e;
   --text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.62);
   --radius:26px;--shadow:0 20px 60px rgba(0,0,0,.45);
   --font:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;font-family:var(--font);color:var(--text);
   background:linear-gradient(180deg,var(--bg0),var(--bg1));
-  padding-bottom:170px;
+  padding-bottom:220px;
 }
-header{text-align:center;padding:34px 18px 22px}
+header{text-align:center;padding:34px 18px 16px}
 h1{margin:0;font-size:1.85rem;font-weight:1000}
 .subtitle{margin-top:8px;font-size:0.82rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.74);}
 .container{max-width:640px;margin:auto;padding:0 14px}
-.card{background:rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
-.section-label{margin:34px 8px 14px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.80);font-weight:900}
+.card{
+  background:rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.08);
+}
+.section-label{
+  margin:34px 8px 14px;
+  font-size:.78rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.80);
+  font-weight:900
+}
 button{font-family:inherit;cursor:pointer}
-.btn{border:none;border-radius:999px;padding:14px 20px;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--cyan));color:#07070c}
+.btn{
+  border:none;border-radius:999px;padding:14px 20px;font-weight:900;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  color:#07070c
+}
+.btn2{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  padding:12px 16px;
+  font-weight:900;
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.90);
+}
+.btnLink{
+  border:none;background:transparent;color:rgba(57,245,255,.95);
+  font-weight:900;padding:0;cursor:pointer;
+}
 .confetti{position:fixed;width:10px;height:10px;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
-input, textarea{
+
+input, textarea, select{
   width:100%;padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.92);
   font-size:.92rem;outline:none;margin-top:8px;
 }
-textarea{resize:vertical;height:80px}
+textarea{resize:vertical;height:90px}
 hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
+
+/* Chips / pills */
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.pill{
+  padding:10px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-weight:900;font-size:.86rem;color:rgba(255,255,255,.86);
+}
+
+/* Accordion */
+.acc{
+  margin-top:12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+  background:rgba(255,255,255,.05);
+}
+.acc summary{
+  list-style:none;
+  cursor:pointer;
+  padding:12px 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-weight:1000;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc .body{
+  padding:0 14px 14px 14px;
+  color:rgba(255,255,255,.78);
+  line-height:1.55;
+}
+.badge{
+  font-size:.78rem;font-weight:1000;
+  padding:6px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.86);
+  white-space:nowrap;
+}
+
+/* Bottom nav */
+.nav{
+  position:fixed;left:0;right:0;bottom:0;
+  z-index:999;
+  padding:12px 12px 18px;
+  background:linear-gradient(180deg, rgba(7,7,12,.00), rgba(7,7,12,.75) 25%, rgba(7,7,12,.95));
+  backdrop-filter: blur(10px);
+}
+.navRow{
+  max-width:680px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:10px;
+}
+.nav a{
+  text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:10px 8px;border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.88);
+  font-weight:1000;font-size:.75rem;
+}
+.nav a span{font-size:1.05rem;line-height:1;margin-bottom:6px}
+.nav a:active{transform:scale(.98)}
+.navHint{
+  max-width:680px;margin:10px auto 0;
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  color:rgba(255,255,255,.70);font-weight:900;font-size:.82rem;
+}
+
+/* Floating confetti button (kept) */
+.float{
+  position:fixed;left:0;right:0;bottom:92px;
+  display:flex;justify-content:center;
+  z-index:1000;pointer-events:none;
+}
+.float button{pointer-events:auto}
+
+/* Sub cards */
+.subcard{
+  margin-top:12px;padding:12px;border-radius:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10)
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){ .grid2{grid-template-columns:1fr} }
+
+/* Tracker bubbles */
+.lb{
+  aspect-ratio:1;
+  border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-weight:900;color:rgba(255,255,255,.70);
+  cursor:pointer;
+  user-select:none;
+}
+
+/* Compare images */
+.compareWrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.compareWrap img{
+  width:100%;height:260px;object-fit:cover;border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+}
+@media (max-width:520px){ .compareWrap{grid-template-columns:1fr} .compareWrap img{height:220px} }
+.smallNote{color:rgba(255,255,255,.72);font-weight:800;font-size:.86rem}
 </style>
 </head>
 
-<body>
+<body id="top">
+
 <header>
   <h1>Bailey’s Guide to Wellness</h1>
   <div class="subtitle" id="dailyHeader"></div>
@@ -51,18 +192,34 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
 <div class="container">
 
   <!-- START HERE -->
-  <div class="card">
-    <strong>Goal:</strong> 166 → 140<br>
-    <strong>Plan:</strong> 4×/week · 30 minutes<br>
-    <strong>Non-negotiables:</strong> Protein · Steps · Sleep<br><br>
-    <em>If you do only ONE thing today:</em><br>
-    <strong id="oneThing"></strong>
+  <div class="card" id="today">
+    <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div>
+        <strong>Goal:</strong> 166 → 140<br>
+        <strong>Plan:</strong> 4×/week · 30 minutes<br>
+        <strong>Non-negotiables:</strong> Protein · Steps · Sleep<br><br>
+        <em>If you do only ONE thing today:</em><br>
+        <strong id="oneThing"></strong>
+      </div>
+
+      <div style="min-width:220px;flex:1">
+        <div class="subcard">
+          <strong>Streak (gentle)</strong>
+          <div style="margin-top:6px;color:rgba(255,255,255,.78)">
+            <span id="streakCount" style="font-size:1.3rem;font-weight:1000">0</span> days
+          </div>
+          <div class="smallNote" style="margin-top:6px;">
+            Counts “perfect days” when all 4 checklist items are done.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- DAILY MOTIVATION -->
   <div class="card">
     <strong>Today’s Motivation</strong>
-    <p id="dailyQuote"></p>
+    <p id="dailyQuote" style="margin-top:10px"></p>
     <p style="font-style:italic" id="dailyVerse"></p>
   </div>
 
@@ -73,14 +230,39 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
     <input id="ciWaist" placeholder="Waist (optional)" />
     <textarea id="ciWins" placeholder="Wins this week"></textarea>
     <textarea id="ciStruggles" placeholder="Struggles"></textarea>
-    <button class="btn" onclick="saveCheckIn()">Save Check-In</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" onclick="saveCheckIn()">Save Check-In</button>
+      <button class="btn2" onclick="renderCheckInHistory()">Refresh History</button>
+      <button class="btn2" onclick="exportCheckIns()">Export Check-Ins (JSON)</button>
+    </div>
+    <div class="subcard" style="margin-top:14px">
+      <strong>Check-In History</strong>
+      <div id="checkInHistory" style="display:grid;gap:10px;margin-top:12px;"></div>
+      <div class="smallNote" style="margin-top:10px">Stored locally on this device.</div>
+    </div>
   </div>
 
   <!-- PROGRESS PHOTOS -->
-  <div class="card">
+  <div class="card" id="photos">
     <strong>Progress Photos (max 3/day)</strong>
     <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
     <div id="photoPreview" style="margin-top:12px;"></div>
+
+    <div class="subcard" style="margin-top:14px">
+      <strong>Photo Compare</strong>
+      <div class="smallNote" style="margin-top:8px">Pick two days to compare (stored locally).</div>
+      <div class="grid2" style="margin-top:10px">
+        <div>
+          <div class="smallNote">Left date</div>
+          <select id="compareA" onchange="renderCompare()"></select>
+        </div>
+        <div>
+          <div class="smallNote">Right date</div>
+          <select id="compareB" onchange="renderCompare()"></select>
+        </div>
+      </div>
+      <div class="compareWrap" id="compareWrap"></div>
+    </div>
   </div>
 
   <!-- WORKOUT LOG -->
@@ -90,34 +272,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
     <button class="btn" onclick="saveWorkout()">Save Workout</button>
   </div>
 
-  <!-- STACK (simple) -->
-  <div class="card" id="stackCard">
-    <strong>Daily Stack (Simple)</strong>
-    <p style="color:rgba(255,255,255,.72);margin-top:8px;">
-      Keep it basic. This is meant to be easy, not overwhelming.
-    </p>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Morning (06:50)</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Water (big glass)</div>
-      <div style="color:rgba(255,255,255,.74);">• Electrolytes (optional)</div>
-      <div style="color:rgba(255,255,255,.74);">• Multivitamin (if you take one)</div>
-    </div>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Workout Window</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Protein after (shake or meal)</div>
-      <div style="color:rgba(255,255,255,.74);">• Creatine daily (optional)</div>
-    </div>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Night (Wind-down)</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Stretch 3–5 minutes</div>
-      <div style="color:rgba(255,255,255,.74);">• Magnesium glycinate (optional)</div>
-    </div>
-  </div>
-
-  <!-- CYCLE SYNC -->
+  <!-- ENERGY MODE -->
   <div class="card">
     <strong>Energy Mode</strong>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
@@ -125,20 +280,21 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
       <button class="btn" style="flex:1;min-width:160px;filter:saturate(.85) brightness(.95);" onclick="setCycle('luteal')">Low Energy 🩸</button>
     </div>
     <p id="cycleMessage" style="margin-top:12px;color:rgba(255,255,255,.82)"></p>
+    <div class="smallNote">Low energy mode = fewer sets/rounds. Still a win.</div>
   </div>
 
   <!-- TODAY MODE -->
-  <div class="card" id="todayCard">
+  <div class="card">
     <strong>Today Mode</strong>
     <p id="todayFocus" style="margin-top:10px;color:rgba(255,255,255,.82)"></p>
     <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
       <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:800;font-size:.9rem;">0 / 4 done</span>
-      <button style="border:none;background:transparent;color:rgba(57,245,255,.95);font-weight:900" onclick="resetToday()">Reset today</button>
+      <button class="btnLink" onclick="resetToday()">Reset today</button>
     </div>
   </div>
 
-  <!-- THE 26 LB COUNTDOWN -->
+  <!-- 26 LB COUNTDOWN -->
   <div class="card">
     <strong>The 26 lb Countdown</strong>
     <p style="margin-top:8px;color:rgba(255,255,255,.72)">Tap a bubble when you lose a pound.</p>
@@ -150,32 +306,36 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
   </div>
 
   <!-- DAILY FLOW -->
-  <div class="section-label">THE DAILY FLOW</div>
+  <div class="section-label" id="flow">THE DAILY FLOW</div>
   <div class="card">
     <div style="display:grid;gap:12px;">
-      <div><strong>06:50</strong> — Wake & Hydrate <span style="color:rgba(255,255,255,.70)">• see stack (above)</span></div>
+      <div><strong>06:50</strong> — Wake & Hydrate <span style="color:rgba(255,255,255,.70)">• see stack</span></div>
       <div><strong>07:15</strong> — Daughter drop-off</div>
       <div><strong>08:30</strong> — Son drop-off (M/W/F)</div>
-      <div><strong>12:30</strong> — High-protein lunch <span style="color:rgba(255,255,255,.70)">• protein + veg</span></div>
+      <div><strong>12:30</strong> — High-protein lunch <span style="color:rgba(255,255,255,.70)">• protein + veg + smart carb</span></div>
       <div><strong>14:30</strong> — Pickup</div>
 
-      <div style="margin-top:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Workout Window (Primary)</strong><br>
         <span style="color:rgba(255,255,255,.75)">3:15–3:45 • 30 minutes</span>
       </div>
 
-      <div style="padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Workout Window (Backup)</strong><br>
         <span style="color:rgba(255,255,255,.75)">7:45–8:15 • after kids down</span>
       </div>
 
-      <div><strong>15:30</strong> — Snack: Protein <span style="color:rgba(255,255,255,.70)">• shake, jerky, turkey roll-ups</span></div>
+      <divtoggleeStyle class="subcard">
+        <strong>Snack idea</strong><br>
+        <span style="color:rgba(255,255,255,.75)">Protein + crunch (turkey rollups, jerky, protein shake, cottage-cheese alternative)</span>
+      </div>
+
       <div><strong>21:00</strong> — Wind-down <span style="color:rgba(255,255,255,.70)">• stretch / cozy walk</span></div>
     </div>
   </div>
 
-  <!-- WORKOUTS -->
-  <div class="section-label">THE MOVES (30 MIN)</div>
+  <!-- MOVES -->
+  <div class="section-label" id="moves">THE MOVES (30 MIN)</div>
 
   <div class="card">
     <strong>How it should feel (quick rules)</strong>
@@ -236,7 +396,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
         <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> quad burn. <em>Don’t:</em> hold breath.</div>
       </div>
 
-      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Cool-down (3–5 min):</strong><br>
         <span style="color:rgba(255,255,255,.72)">Quad stretch • Hamstring stretch • Figure-4 glute stretch</span>
       </div>
@@ -288,7 +448,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
         <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> glutes at the top. <em>Don’t:</em> push through low back.</div>
       </div>
 
-      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Cool-down (3 min):</strong><br>
         <span style="color:rgba(255,255,255,.72)">Child’s pose • Supine twist • Deep breathing</span>
       </div>
@@ -302,7 +462,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
       <div>
         <strong>Wednesday: Upper Body</strong>
-        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (5 min): arm circles + band pull-aparts (or light rows)</div>
+        <div style="color:rgba(255,255,255,.70);margin-top:4px;">Warm-up (5 min): arm circles + light rows</div>
       </div>
       <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('wednesday')">
         <span id="chev-wednesday">▾</span> <span id="lbl-wednesday">Collapse</span>
@@ -340,7 +500,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
         <div style="margin-top:8px;color:rgba(255,255,255,.72)"><em>Feel:</em> pump. <em>Don’t:</em> lock elbows hard.</div>
       </div>
 
-      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Cool-down (3–5 min):</strong><br>
         <span style="color:rgba(255,255,255,.72)">Chest doorway stretch • Upper back stretch • Neck gentle stretch</span>
       </div>
@@ -349,7 +509,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
     </div>
   </div>
 
-  <!-- THURSDAY (NOW LOGGABLE) -->
+  <!-- THURSDAY -->
   <div class="card workout-card" data-day="thursday">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
       <div>
@@ -389,7 +549,7 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
         <div style="color:rgba(255,255,255,.75);margin-top:6px;">20–30 seconds</div>
       </div>
 
-      <div style="margin-top:16px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
+      <div class="subcard">
         <strong>Cool-down (3 min):</strong><br>
         <span style="color:rgba(255,255,255,.72)">Hamstring stretch • Quad stretch • Child’s pose</span>
       </div>
@@ -398,7 +558,138 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
     </div>
   </div>
 
-  <!-- PROGRESS PHOTOS GALLERY -->
+  <!-- FOOD -->
+  <div class="section-label" id="food">FOOD PLAYBOOK (EASY MODE)</div>
+  <div class="card">
+    <strong>Rules that actually work</strong>
+    <div class="pills">
+      <div class="pill">Protein first</div>
+      <div class="pill">Fiber + water</div>
+      <div class="pill">Carbs on purpose</div>
+      <div class="pill">80% consistent</div>
+    </div>
+
+    <div class="subcard">
+      <strong>Portions: His vs Hers (quick guide)</strong>
+      <div class="grid2" style="margin-top:10px">
+        <div>
+          <div class="badge">Hers</div>
+          <div style="margin-top:8px;color:rgba(255,255,255,.78)">
+            <strong>Protein:</strong> 25–35g/meal<br>
+            <strong>Carb:</strong> 0–1 fist (workout days = 1)<br>
+            <strong>Fat:</strong> 1 thumb<br>
+            <strong>Veg:</strong> 2 fists
+          </div>
+        </div>
+        <div>
+          <div class="badge">His</div>
+          <div style="margin-top:8px;color:rgba(255,255,255,.78)">
+            <strong>Protein:</strong> 40–55g/meal<br>
+            <strong>Carb:</strong> 1 fist (more if bulking)<br>
+            <strong>Fat:</strong> 1–2 thumbs<br>
+            <strong>Veg:</strong> 2 fists
+          </div>
+        </div>
+      </div>
+      <div class="smallNote" style="margin-top:10px">
+        “Fist” and “thumb” are hand-size portions. Keeps it simple.
+      </div>
+    </div>
+
+    <div class="subcard">
+      <strong>3 repeatable lunches (pick one)</strong>
+      <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.55">
+        <li><strong>Chicken salad bowl:</strong> rotisserie chicken + greens + cucumber + cheese (optional) + light dressing</li>
+        <li><strong>Taco bowl:</strong> ground turkey + salsa + lettuce + avocado + (workout days: small rice)</li>
+        <li><strong>“Adult lunchable”:</strong> turkey slices + string cheese + pickles + almonds + berries</li>
+      </ul>
+    </div>
+
+    <div class="subcard">
+      <strong>3 easy dinners</strong>
+      <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.55">
+        <li><strong>Sheet pan:</strong> salmon/chicken + broccoli + olive oil + seasoning</li>
+        <li><strong>Burger night:</strong> bunless or thin bun + side salad + fries for kids</li>
+        <li><strong>Stir-fry:</strong> frozen veg + protein + sauce (go easy) + cauliflower rice</li>
+      </ul>
+    </div>
+
+    <div class="subcard">
+      <strong>Snack list (protein + crunch)</strong>
+      <div class="pills">
+        <div class="pill">Turkey roll-ups</div>
+        <div class="pill">Jerky</div>
+        <div class="pill">Protein shake</div>
+        <div class="pill">Cucumbers + ranch</div>
+        <div class="pill">Eggs</div>
+        <div class="pill">Edamame</div>
+      </div>
+      <div class="smallNote" style="margin-top:10px">
+        (Replaced yogurt-style snacks with non-yogurt options.)
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section-label" id="stack">THE STACK (DETAILED, NOT OVERWHELMING)</div>
+  <div class="card">
+    <strong>Simple rule:</strong> If it feels overwhelming, skip the “optional” stuff and just do water + protein + sleep.
+
+    <details class="acc" open>
+      <summary>
+        <span>Morning (06:50) — Hydration + baseline</span>
+        <span class="badge">Daily</span>
+      </summary>
+      <div class="body">
+        <div><strong>Water (big glass)</strong> — jumpstarts energy + reduces “false hunger.”</div>
+        <div style="margin-top:8px"><strong>Electrolytes (optional)</strong> — helps hydration stick, especially if sweating or you get headaches.</div>
+        <div style="margin-top:8px"><strong>Multivitamin (optional)</strong> — “nutrition insurance,” not magic. Food still wins.</div>
+        <div class="smallNote" style="margin-top:10px">If any supplements upset your stomach, take with food later.</div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>
+        <span>Workout window — performance + recovery</span>
+        <span class="badge">Most days</span>
+      </summary>
+      <div class="body">
+        <div><strong>Protein after</strong> — reduces cravings later and supports muscle (the “tight & toned” look).</div>
+        <div style="margin-top:8px"><strong>Creatine (optional)</strong> — helps strength and workout consistency. (Not a stimulant.)</div>
+        <div class="smallNote" style="margin-top:10px">If you don’t want supplements: just eat protein within a couple hours.</div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>
+        <span>Night — sleep quality + stress reset</span>
+        <span class="badge">Daily</span>
+      </summary>
+      <div class="body">
+        <div><strong>3–5 min stretch</strong> — turns off “fight or flight” and reduces stiffness.</div>
+        <div style="margin-top:8px"><strong>Magnesium glycinate (optional)</strong> — supports sleep + muscle relaxation.</div>
+        <div class="smallNote" style="margin-top:10px">If sleep is rough: dim lights, no doom-scroll, keep it boring.</div>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>
+        <span>Your custom items</span>
+        <span class="badge">Edit me</span>
+      </summary>
+      <div class="body">
+        <div class="smallNote">Add anything your doctor told you to take. This section is intentionally customizable.</div>
+        <textarea id="customStack" placeholder="Example: Vitamin D (morning), Fish oil (with lunch), etc..."></textarea>
+        <button class="btn2" style="margin-top:10px;width:100%" onclick="saveCustomStack()">Save Custom Stack Notes</button>
+      </div>
+    </details>
+
+    <div class="smallNote" style="margin-top:12px">
+      Note: This is a wellness guide — meds/supplements should follow her doctor’s instructions.
+    </div>
+  </div>
+
+  <!-- PHOTO GALLERY -->
   <div class="section-label">PROGRESS PHOTO GALLERY</div>
   <div class="card">
     <strong>Browse saved days</strong>
@@ -410,8 +701,21 @@ hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
 </div><!-- /.container -->
 
 <!-- CONFETTI BUTTON -->
-<div style="position:fixed;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:100;pointer-events:none;">
-  <button class="btn" style="pointer-events:auto;padding:16px 22px;font-size:1.05rem" onclick="fireConfetti()">I CRUSHED IT! 🎊</button>
+<div class="float">
+  <button class="btn" style="padding:16px 22px;font-size:1.05rem" onclick="fireConfetti()">I CRUSHED IT! 🎊</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+  <div class="navRow">
+    <a href="#today"><span>✨</span>Today</a>
+    <a href="#flow"><span>🗓️</span>Flow</a>
+    <a href="#moves"><span>🏋️</span>Moves</a>
+    <a href="#food"><span>🥗</span>Food</a>
+    <a href="#stack"><span>💊</span>Stack</a>
+    <a href="#photos"><span>📸</span>Photos</a>
+  </div>
+  <div class="navHint">Tap a tab • Scroll is fine too • Everything saves on this phone</div>
 </div>
 
 <script>
@@ -440,7 +744,8 @@ const STORAGE = {
   photos: "bgwDailyPhotos",
   workoutLog: "bgwWorkoutLog",
   exerciseLogs: "bgwExerciseLogs",
-  workoutCollapsed: "bgwWorkoutCollapsed"
+  workoutCollapsed: "bgwWorkoutCollapsed",
+  customStack: "bgwCustomStackNotes"
 };
 
 function safeParse(json, fallback) {
@@ -512,7 +817,7 @@ function applyAutoSets() {
     el.textContent = `${n} ${label}`;
   });
   document.getElementById("cycleMessage").textContent = isLow
-    ? "Low Energy mode: fewer sets, lighter weights, still a win."
+    ? "Low Energy mode: fewer sets/rounds, lighter weights, still a win."
     : "High Energy mode: full sets, push progress safely.";
 }
 function setCycle(phase) {
@@ -539,6 +844,7 @@ document.getElementById("todayFocus").textContent =
 /** CHECKLIST */
 const checklistEl = document.getElementById("checklist");
 const checkMetaText = document.getElementById("checkMetaText");
+
 const defaultChecklist = [
   { id: "water", title: "Hydrate", sub: "Water + morning essentials" },
   { id: "protein", title: "Protein", sub: "High-protein lunch + snack" },
@@ -587,6 +893,7 @@ function renderChecklist() {
       all[key] = state;
       saveDailyState(all);
       renderChecklist();
+      updateStreak();
       if (state.done[item.id]) fireConfetti();
     });
 
@@ -601,14 +908,48 @@ function resetToday() {
   delete all[key];
   saveDailyState(all);
   renderChecklist();
+  updateStreak();
 }
 renderChecklist();
+
+/** Streak: counts consecutive days where all 4 checklist tasks were done */
+function updateStreak(){
+  const all = safeParse(localStorage.getItem(STORAGE.today), {});
+  const keys = Object.keys(all).sort(); // yyyy-mm-dd lex sort works
+  if(!keys.length){ document.getElementById("streakCount").textContent = "0"; return; }
+
+  // build a set of "perfect days"
+  const perfect = new Set();
+  keys.forEach(k=>{
+    const st = all[k] || {};
+    const done = (st.done || {});
+    const ok = defaultChecklist.every(it => Boolean(done[it.id]));
+    if(ok) perfect.add(k);
+  });
+
+  // count backwards from today while consecutive days are perfect
+  let streak = 0;
+  let d = new Date();
+  for(;;){
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    const k = `${yyyy}-${mm}-${dd}`;
+    if(perfect.has(k)){
+      streak++;
+      d.setDate(d.getDate()-1);
+      continue;
+    }
+    break;
+  }
+  document.getElementById("streakCount").textContent = String(streak);
+}
+updateStreak();
 
 /** 26 LB TRACKER */
 const grid = document.getElementById("trackerGrid");
 const totalPounds = 26;
 let progress = safeParse(localStorage.getItem(STORAGE.progress), []);
-
 function renderCount() {
   document.getElementById("trackerCount").textContent = `${progress.length} / ${totalPounds} complete`;
 }
@@ -623,21 +964,10 @@ function resetProgress() {
   document.querySelectorAll(".lb").forEach(b => b.style.background = "rgba(255,255,255,.06)");
   renderCount();
 }
-
 for (let i = 0; i < totalPounds; i++) {
   const bubble = document.createElement("div");
   bubble.className = "lb";
   bubble.textContent = i + 1;
-  bubble.style.aspectRatio = "1";
-  bubble.style.borderRadius = "999px";
-  bubble.style.display = "flex";
-  bubble.style.alignItems = "center";
-  bubble.style.justifyContent = "center";
-  bubble.style.border = "1px solid rgba(255,255,255,.12)";
-  bubble.style.background = "rgba(255,255,255,.06)";
-  bubble.style.fontWeight = "900";
-  bubble.style.color = "rgba(255,255,255,.70)";
-  bubble.style.cursor = "pointer";
 
   if (progress.includes(i)) {
     bubble.style.background = "linear-gradient(180deg, rgba(255,59,212,.95), rgba(57,245,255,.85))";
@@ -711,7 +1041,65 @@ function saveCheckIn(){
   };
   localStorage.setItem(STORAGE.checkins, JSON.stringify(all));
   alert("Weekly check-in saved locally ✅");
+  renderCheckInHistory();
 }
+function renderCheckInHistory(){
+  const wrap = document.getElementById("checkInHistory");
+  if(!wrap) return;
+  const all = safeParse(localStorage.getItem(STORAGE.checkins), {});
+  const keys = Object.keys(all).sort().reverse();
+  wrap.innerHTML = "";
+
+  if(!keys.length){
+    wrap.innerHTML = `<div style="color:rgba(255,255,255,.65)">No check-ins saved yet.</div>`;
+    return;
+  }
+
+  keys.forEach(k=>{
+    const item = all[k] || {};
+    const card = document.createElement("div");
+    card.style.padding = "12px";
+    card.style.borderRadius = "16px";
+    card.style.border = "1px solid rgba(255,255,255,.12)";
+    card.style.background = "rgba(255,255,255,.06)";
+
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+        <div>
+          <strong>${k}</strong>
+          <div style="color:rgba(255,255,255,.70);margin-top:4px">Saved: ${item.date || "—"}</div>
+        </div>
+        <button class="btn2" style="padding:10px 12px" onclick="deleteCheckIn('${k}')">Delete</button>
+      </div>
+      <div style="margin-top:10px;color:rgba(255,255,255,.80);line-height:1.55">
+        <div><strong>Weight:</strong> ${escapeHtml(item.weight || "—")} &nbsp; <strong>Waist:</strong> ${escapeHtml(item.waist || "—")}</div>
+        <div style="margin-top:8px"><strong>Wins:</strong> ${escapeHtml(item.wins || "—")}</div>
+        <div style="margin-top:8px"><strong>Struggles:</strong> ${escapeHtml(item.struggles || "—")}</div>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+function deleteCheckIn(key){
+  if(!confirm(`Delete ${key}?`)) return;
+  const all = safeParse(localStorage.getItem(STORAGE.checkins), {});
+  delete all[key];
+  localStorage.setItem(STORAGE.checkins, JSON.stringify(all));
+  renderCheckInHistory();
+}
+function exportCheckIns(){
+  const all = safeParse(localStorage.getItem(STORAGE.checkins), {});
+  const blob = new Blob([JSON.stringify(all, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "bailey-checkins.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 500);
+}
+renderCheckInHistory();
 
 /** WORKOUT LOG (TEXT) */
 function saveWorkout(){
@@ -736,6 +1124,18 @@ function saveExerciseLogs(){
   localStorage.setItem(STORAGE.exerciseLogs, JSON.stringify(all));
   alert("Exercise logs saved locally ✅");
 }
+
+/** CUSTOM STACK NOTES */
+function saveCustomStack(){
+  const val = document.getElementById("customStack").value || "";
+  localStorage.setItem(STORAGE.customStack, val);
+  alert("Saved ✅");
+}
+(function loadCustomStack(){
+  const val = localStorage.getItem(STORAGE.customStack) || "";
+  const el = document.getElementById("customStack");
+  if(el) el.value = val;
+})();
 
 /** PHOTOS */
 function loadPhotosAll(){ return safeParse(localStorage.getItem(STORAGE.photos), {}); }
@@ -781,6 +1181,8 @@ async function addPhotos(e){
   savePhotosAll(all);
   renderTodayPhotos();
   renderGallery();
+  renderCompareSelectors();
+  renderCompare();
   e.target.value = "";
 }
 
@@ -852,6 +1254,8 @@ function removePhotoForDay(dayKey, index){
   savePhotosAll(all);
   renderTodayPhotos();
   renderGallery();
+  renderCompareSelectors();
+  renderCompare();
 }
 
 function renderGallery(){
@@ -878,7 +1282,11 @@ function renderGallery(){
     top.style.display = "flex";
     top.style.justifyContent = "space-between";
     top.style.alignItems = "center";
-    top.innerHTML = `<strong>${k}</strong><span style="color:rgba(255,255,255,.70);font-weight:900">${photos.length} photo(s)</span>`;
+    top.style.gap = "10px";
+    top.innerHTML = `
+      <strong>${k}</strong>
+      <span style="color:rgba(255,255,255,.70);font-weight:900">${photos.length} photo(s)</span>
+    `;
     card.appendChild(top);
 
     const row = document.createElement("div");
@@ -908,10 +1316,96 @@ function clearAllPhotos(){
   localStorage.removeItem(STORAGE.photos);
   renderTodayPhotos();
   renderGallery();
+  renderCompareSelectors();
+  renderCompare();
+}
+
+function renderCompareSelectors(){
+  const all = loadPhotosAll();
+  const keys = Object.keys(all).sort().reverse().filter(k => (all[k]||[]).length);
+  const a = document.getElementById("compareA");
+  const b = document.getElementById("compareB");
+  if(!a || !b) return;
+
+  const currentA = a.value;
+  const currentB = b.value;
+
+  a.innerHTML = "";
+  b.innerHTML = "";
+
+  const noneOpt = (label) => {
+    const o = document.createElement("option");
+    o.value = "";
+    o.textContent = label;
+    return o;
+  };
+
+  a.appendChild(noneOpt("Select a date…"));
+  b.appendChild(noneOpt("Select a date…"));
+
+  keys.forEach(k=>{
+    const oa = document.createElement("option"); oa.value = k; oa.textContent = k;
+    const ob = document.createElement("option"); ob.value = k; ob.textContent = k;
+    a.appendChild(oa); b.appendChild(ob);
+  });
+
+  if(keys.includes(currentA)) a.value = currentA;
+  if(keys.includes(currentB)) b.value = currentB;
+
+  // default selections if empty
+  if(!a.value && keys[0]) a.value = keys[0];
+  if(!b.value && keys[1]) b.value = keys[1] || keys[0];
+}
+
+function renderCompare(){
+  const wrap = document.getElementById("compareWrap");
+  const all = loadPhotosAll();
+  const a = document.getElementById("compareA")?.value || "";
+  const b = document.getElementById("compareB")?.value || "";
+  if(!wrap) return;
+
+  wrap.innerHTML = "";
+
+  const pickFirst = (!a && !b);
+  if(pickFirst){
+    wrap.innerHTML = `<div style="color:rgba(255,255,255,.65)">Save photos for at least one day to use compare.</div>`;
+    return;
+  }
+
+  const left = (all[a]||[])[0];
+  const right = (all[b]||[])[0];
+
+  const leftBox = document.createElement("div");
+  const rightBox = document.createElement("div");
+
+  leftBox.innerHTML = `<div class="smallNote">${a || "—"}</div>`;
+  rightBox.innerHTML = `<div class="smallNote">${b || "—"}</div>`;
+
+  const li = document.createElement("img");
+  li.src = left || "";
+  li.alt = a;
+  if(!left) li.style.display = "none";
+
+  const ri = document.createElement("img");
+  ri.src = right || "";
+  ri.alt = b;
+  if(!right) ri.style.display = "none";
+
+  leftBox.appendChild(li);
+  rightBox.appendChild(ri);
+
+  wrap.appendChild(leftBox);
+  wrap.appendChild(rightBox);
+
+  if(!left && !right){
+    wrap.innerHTML = `<div style="color:rgba(255,255,255,.65)">No photos available for selected dates.</div>`;
+  }
 }
 
 renderTodayPhotos();
 renderGallery();
+renderCompareSelectors();
+renderCompare();
 
 /** CONFETTI */
 function fireConfetti() {
@@ -930,9 +1424,17 @@ function fireConfetti() {
   }
 }
 
-/* Make every exercise log-ready (Tue/Wed/Thu + anything you add later) */
+/** Misc */
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;");
+}
+
+/* Make every exercise log-ready */
 ensureLogInputs();
 </script>
 
 </body>
-        </html>
+                                     </html>
