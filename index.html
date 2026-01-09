@@ -17,101 +17,206 @@
   --font:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 }
 *{box-sizing:border-box}
-html,body{max-width:100%; overflow-x:hidden;}
+html,body{height:100%}
 body{
   margin:0;font-family:var(--font);color:var(--text);
   background:linear-gradient(180deg,var(--bg0),var(--bg1));
-  padding-bottom:170px;
-  line-height:1.45;
 }
-header{text-align:center;padding:34px 18px 22px}
-h1{margin:0;font-size:1.85rem;font-weight:1000;line-height:1.1}
-.subtitle{margin-top:10px;font-size:0.82rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.74);line-height:1.25;}
-.container{max-width:640px;margin:auto;padding:0 14px}
+a{color:inherit}
+header{text-align:center;padding:28px 18px 16px}
+h1{margin:0;font-size:1.75rem;font-weight:1000}
+.subtitle{margin-top:8px;font-size:0.8rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.74);}
+.container{max-width:720px;margin:auto;padding:0 14px 170px} /* extra bottom padding to prevent overlap */
 .card{
   background:rgba(255,255,255,.06);
   border-radius:var(--radius);
-  padding:22px;
-  margin-bottom:18px;
+  padding:20px;
+  margin-bottom:16px;
   box-shadow:var(--shadow);
   border:1px solid rgba(255,255,255,.08);
 }
-.section-label{margin:34px 8px 14px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.80);font-weight:900}
+.section-label{margin:26px 8px 12px;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.80);font-weight:900}
 button{font-family:inherit;cursor:pointer}
 .btn{
-  border:none;border-radius:999px;padding:14px 20px;font-weight:900;
-  background:linear-gradient(90deg,var(--pink),var(--cyan));color:#07070c;
-  white-space:nowrap;
+  border:none;border-radius:999px;padding:14px 18px;font-weight:1000;
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  color:#07070c;
 }
-.btn:active{transform:translateY(1px)}
 .btn-ghost{
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.14);
   background:rgba(255,255,255,.06);
   color:rgba(255,255,255,.9);
   border-radius:999px;
   padding:10px 14px;
   font-weight:900;
 }
-.btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.confetti{position:fixed;width:10px;height:10px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.muted{color:rgba(255,255,255,.72)}
+hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:14px 0}
 input, textarea{
   width:100%;padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);
   background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.92);
   font-size:.92rem;outline:none;margin-top:8px;
 }
-textarea{resize:vertical;height:88px}
-hr{border:none;border-top:1px solid rgba(255,255,255,.10);margin:16px 0}
-ul{padding-left:18px}
-a{color:rgba(57,245,255,.95);text-decoration:none;font-weight:900}
-a:hover{text-decoration:underline}
+textarea{resize:vertical;height:84px}
 
-/* Exercise blocks */
-.ex{padding-top:2px}
-.ex strong{display:block;line-height:1.2}
-.ex .meta{margin-top:6px;color:rgba(255,255,255,.75);line-height:1.35}
-.ex .hint{margin-top:8px;color:rgba(255,255,255,.72);line-height:1.35}
-.ex .logwrap{margin-top:10px;display:grid;gap:10px}
-.ex .logwrap input{margin-top:0}
+.confetti{position:fixed;width:10px;height:10px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
 
-/* Collapse row */
-.workout-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.workout-head .title{min-width:220px}
-.workout-head button{margin-left:auto}
-
-/* Little “pill” sections */
-.pill{
-  margin-top:6px;padding:12px;border-radius:16px;
+/* Tabs */
+.tabs{
+  position:sticky;top:0;z-index:50;
+  padding:10px 12px;
+  backdrop-filter: blur(10px);
+  background:linear-gradient(180deg, rgba(7,7,12,.92), rgba(11,11,18,.65));
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.tabbar{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+}
+.tabbtn{
+  border:none;border-radius:999px;
+  padding:10px 14px;
+  font-weight:1000;
   background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.9);
   border:1px solid rgba(255,255,255,.10);
 }
-
-/* Photo thumbs */
-.thumbRow{display:flex;gap:10px;flex-wrap:wrap}
-.thumbBox{
-  position:relative;width:96px;height:96px;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)
+.tabbtn.active{
+  background:linear-gradient(90deg,var(--pink),var(--cyan));
+  color:#07070c;
+  border-color:transparent;
 }
-.thumbBox img{width:100%;height:100%;object-fit:cover}
 
-/* Mobile polish */
-@media (max-width:420px){
-  .btn{width:100%;justify-content:center}
-  .btn-ghost{width:100%}
-  .workout-head button{width:100%}
+/* Workout card */
+.workout-card strong{font-size:1.05rem}
+.ex{
+  padding:12px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.045);
+}
+.ex-title{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
+}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 10px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  font-weight:900;
+  color:rgba(255,255,255,.85);
+  font-size:.86rem;
+}
+.pill a{ text-decoration:none }
+.ex-meta{margin-top:6px;color:rgba(255,255,255,.75);line-height:1.45}
+.ex-rule{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.18);
+  color:rgba(255,255,255,.80);
+  line-height:1.5;
+}
+.ex-rule b{color:rgba(255,255,255,.92)}
+.savebar{margin-top:14px}
+.small{font-size:.9rem}
+
+/* Fixed bottom button (no overlap) */
+.fixed-cta{
+  position:fixed;left:0;right:0;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  display:flex;justify-content:center;z-index:100;
+  pointer-events:none;
+  padding:0 14px;
+}
+.fixed-cta .btn{
+  pointer-events:auto;
+  width:min(720px,100%);
+  padding:16px 18px;
+  font-size:1.05rem;
+  box-shadow:0 18px 60px rgba(0,0,0,.55);
+}
+
+/* Tracker bubbles */
+.lb{
+  aspect-ratio:1;
+  border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-weight:1000;
+  color:rgba(255,255,255,.70);
+  cursor:pointer;
+  user-select:none;
+}
+.lb.on{
+  background:linear-gradient(180deg, rgba(255,59,212,.95), rgba(57,245,255,.85));
+  color:#07070c;
+}
+
+/* Water tracker */
+.progress-wrap{
+  margin-top:12px;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.18);
+}
+.progress-bar{
+  height:12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+}
+.progress-bar > div{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--cyan),var(--lime));
+}
+.kpi{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:10px;
+  color:rgba(255,255,255,.78);
+  font-weight:900;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  font-weight:1000;
 }
 </style>
 </head>
 
 <body>
+
 <header>
   <h1>Bailey’s Guide to Wellness</h1>
   <div class="subtitle" id="dailyHeader"></div>
 </header>
 
+<div class="tabs">
+  <div class="tabbar">
+    <button class="tabbtn active" data-tab="tab-home" onclick="showTab('tab-home')">Home</button>
+    <button class="tabbtn" data-tab="tab-workouts" onclick="showTab('tab-workouts')">Workouts</button>
+    <button class="tabbtn" data-tab="tab-photos" onclick="showTab('tab-photos')">Photos</button>
+  </div>
+</div>
+
 <div class="container">
 
-  <!-- START HERE -->
+<!-- ===================== HOME TAB ===================== -->
+<div id="tab-home">
+
   <div class="card">
     <strong>Goal:</strong> 166 → 140<br>
     <strong>Plan:</strong> 4×/week · 30 minutes<br>
@@ -120,418 +225,489 @@ a:hover{text-decoration:underline}
     <strong id="oneThing"></strong>
   </div>
 
-  <!-- HOW TO USE -->
-  <div class="card">
-    <strong>How to use this (30 seconds)</strong>
-    <div style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.6">
-      1) Do <strong>One Thing</strong> (even on hard days).<br>
-      2) Hit <strong>Protein + Water</strong>.<br>
-      3) If you work out: log it. If not: walk 10 min.<br>
-      4) Check off the 4 boxes. That’s a win.
-    </div>
-  </div>
-
-  <!-- INSTALL TIP -->
-  <div class="card" id="installCard" style="display:none;">
-    <strong>Install this on your phone 📲</strong>
-    <div style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.6">
-      <strong>Android (Chrome):</strong> tap <strong>⋮</strong> → <strong>Add to Home screen</strong><br>
-      <strong>iPhone (Safari):</strong> tap <strong>Share</strong> → <strong>Add to Home Screen</strong>
-    </div>
-    <button class="btn" style="margin-top:14px;width:100%" onclick="dismissInstallTip()">Got it</button>
-  </div>
-
-  <!-- DAILY MOTIVATION -->
   <div class="card">
     <strong>Today’s Motivation</strong>
-    <p id="dailyQuote" style="margin-top:10px;"></p>
-    <p style="font-style:italic;margin-top:10px;" id="dailyVerse"></p>
+    <p id="dailyQuote" style="margin:10px 0 0"></p>
+    <p style="font-style:italic;margin:10px 0 0" id="dailyVerse"></p>
   </div>
 
-  <!-- WEEKLY CHECK IN -->
+  <!-- NEW: Spotify + Vibe -->
+  <div class="card">
+    <strong>Focus Mode</strong>
+    <p class="muted small" style="margin-top:8px;">Hit play, hit the workout, get out. (Vibe button works best on Android/PWA.)</p>
+    <div class="row" style="margin-top:12px;">
+      <button class="btn" onclick="openSpotify()">Open Spotify 🎧</button>
+      <button class="btn-ghost" onclick="buzz([25,40,25])">Vibe Test 📳</button>
+      <button class="btn-ghost" onclick="buzz([60])">Micro Pep Talk Vibe ✨</button>
+    </div>
+    <div class="muted small" style="margin-top:10px;" id="vibeNote"></div>
+  </div>
+
+  <!-- NEW: Water Tracker -->
+  <div class="card">
+    <strong>Water Tracker</strong>
+    <p class="muted small" style="margin-top:8px;">Daily goal: <span id="waterGoalText"></span>. Quick-add your sips. Saves locally per day.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="waterBarFill"></div></div>
+      <div class="kpi">
+        <div><span id="waterNow"></span> • <span id="waterLeft"></span></div>
+        <div class="chip">Streak: <span id="waterStreak">0</span> 🔥</div>
+      </div>
+
+      <div class="row" style="margin-top:12px;">
+        <button class="btn-ghost" onclick="addWater(8)">+8 oz</button>
+        <button class="btn-ghost" onclick="addWater(16)">+16 oz</button>
+        <button class="btn-ghost" onclick="addWater(24)">+24 oz</button>
+        <button class="btn-ghost" onclick="undoWater()">Undo</button>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <input id="waterCustom" inputmode="numeric" placeholder="Custom oz (ex: 12)" style="flex:1;min-width:160px;margin-top:0" />
+        <button class="btn" onclick="addWaterCustom()">Add</button>
+        <button class="btn-ghost" onclick="resetWater()">Reset</button>
+      </div>
+    </div>
+  </div>
+
   <div class="card">
     <strong>Weekly Check-In</strong>
     <input id="ciWeight" placeholder="Weight" />
     <input id="ciWaist" placeholder="Waist (optional)" />
     <textarea id="ciWins" placeholder="Wins this week"></textarea>
     <textarea id="ciStruggles" placeholder="Struggles"></textarea>
-    <button class="btn" onclick="saveCheckIn()">Save Check-In</button>
+    <button class="btn" style="margin-top:12px;width:100%" onclick="saveCheckIn()">Save Check-In</button>
   </div>
 
-  <!-- PROGRESS PHOTOS -->
   <div class="card">
-    <strong>Progress Photos (max 3/day)</strong>
-    <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
-    <div id="photoPreview" style="margin-top:12px;"></div>
+    <strong>Daily Checklist</strong>
+    <p class="muted small" style="margin-top:8px;">Tap to check off. This is the “correlates” part: do these daily, and the goal happens.</p>
+    <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
+      <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:900;font-size:.95rem;">0 / 4 done</span>
+      <button class="btn-ghost" onclick="resetToday()">Reset today</button>
+    </div>
   </div>
 
-  <!-- WORKOUT LOG -->
-  <div class="card">
-    <strong>Today’s Workout Log</strong>
-    <textarea id="workoutLog" placeholder="Weights, reps, notes…"></textarea>
-    <button class="btn" onclick="saveWorkout()">Save Workout</button>
-  </div>
-
-  <!-- STACK -->
   <div class="card" id="stackCard">
     <strong>Daily Stack (Simple)</strong>
-    <p style="color:rgba(255,255,255,.72);margin-top:8px;">
-      Keep it basic. This is meant to be easy, not overwhelming.
-    </p>
+    <p class="muted" style="margin-top:8px;">Keep it basic. Easy beats perfect.</p>
 
-    <div class="pill">
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
       <strong>Morning (06:50)</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Water (big glass)</div>
-      <div style="color:rgba(255,255,255,.74);">• Electrolytes (optional)</div>
-      <div style="color:rgba(255,255,255,.74);">• Multivitamin (if you take one)</div>
+      <div class="muted" style="margin-top:6px;">• Water (big glass)</div>
+      <div class="muted">• Electrolytes (optional)</div>
+      <div class="muted">• Multivitamin (if you take one)</div>
     </div>
 
-    <div class="pill">
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
       <strong>Workout Window</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Protein after (shake or meal)</div>
-      <div style="color:rgba(255,255,255,.74);">• Creatine daily (optional)</div>
+      <div class="muted" style="margin-top:6px;">• Protein after (shake or meal)</div>
+      <div class="muted">• Creatine daily (optional)</div>
     </div>
 
-    <div class="pill">
+    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
       <strong>Night (Wind-down)</strong>
-      <div style="color:rgba(255,255,255,.74);margin-top:6px;">• Stretch 3–5 minutes</div>
-      <div style="color:rgba(255,255,255,.74);">• Magnesium glycinate (optional)</div>
+      <div class="muted" style="margin-top:6px;">• Stretch 3–5 minutes</div>
+      <div class="muted">• Magnesium glycinate (optional)</div>
     </div>
   </div>
 
-  <!-- TODAY MODE -->
-  <div class="card" id="todayCard">
-    <strong>Today Mode</strong>
-    <p id="todayFocus" style="margin-top:10px;color:rgba(255,255,255,.82)"></p>
-    <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap">
-      <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:800;font-size:.9rem;">0 / 4 done</span>
-      <button style="border:none;background:transparent;color:rgba(57,245,255,.95);font-weight:900" onclick="resetToday()">Reset today</button>
-    </div>
-  </div>
-
-  <!-- THE 26 LB COUNTDOWN -->
   <div class="card">
     <strong>The 26 lb Countdown</strong>
-    <p style="margin-top:8px;color:rgba(255,255,255,.72)">Tap a bubble when you lose a pound.</p>
+    <p class="muted" style="margin-top:8px;">Tap a bubble when you lose a pound.</p>
     <div id="trackerGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:12px;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
-      <span id="trackerCount" style="color:rgba(255,255,255,.70);font-weight:900;">0 / 26 complete</span>
-      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="resetProgress()">Reset</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;">
+      <span id="trackerCount" style="color:rgba(255,255,255,.70);font-weight:1000;">0 / 26 complete</span>
+      <button class="btn-ghost" onclick="resetProgress()">Reset</button>
     </div>
   </div>
 
-  <!-- DAILY FLOW -->
   <div class="section-label">THE DAILY FLOW</div>
   <div class="card">
     <div style="display:grid;gap:12px;">
-      <div><strong>06:50</strong> — Wake & Hydrate <span style="color:rgba(255,255,255,.70)">• see stack (above)</span></div>
+      <div><strong>06:50</strong> — Wake & Hydrate <span class="muted">• see stack</span></div>
       <div><strong>07:15</strong> — Daughter drop-off</div>
       <div><strong>08:30</strong> — Son drop-off (M/W/F)</div>
-      <div><strong>12:30</strong> — High-protein lunch <span style="color:rgba(255,255,255,.70)">• protein + veg</span></div>
+      <div><strong>12:30</strong> — High-protein lunch <span class="muted">• protein + veg</span></div>
       <div><strong>14:30</strong> — Pickup</div>
 
-      <div class="pill">
+      <div style="margin-top:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
         <strong>Workout Window (Primary)</strong><br>
-        <span style="color:rgba(255,255,255,.75)">3:15–3:45 • 30 minutes</span>
+        <span class="muted">3:15–3:45 • 30 minutes</span>
       </div>
 
-      <div class="pill">
+      <div style="padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
         <strong>Workout Window (Backup)</strong><br>
-        <span style="color:rgba(255,255,255,.75)">7:45–8:15 • after kids down</span>
+        <span class="muted">7:45–8:15 • after kids down</span>
       </div>
 
-      <div><strong>15:30</strong> — Snack: Protein <span style="color:rgba(255,255,255,.70)">• shake, jerky, turkey roll-ups</span></div>
-      <div><strong>21:00</strong> — Wind-down <span style="color:rgba(255,255,255,.70)">• stretch / cozy walk</span></div>
+      <div><strong>15:30</strong> — Snack: Protein <span class="muted">• shake, jerky, turkey roll-ups</span></div>
+      <div><strong>21:00</strong> — Wind-down <span class="muted">• stretch / cozy walk</span></div>
     </div>
   </div>
 
-  <!-- WORKOUTS -->
+  <div class="card">
+    <strong>Today’s Workout Log</strong>
+    <textarea id="workoutLog" placeholder="Weights, reps, notes…"></textarea>
+    <button class="btn" style="margin-top:12px;width:100%" onclick="saveWorkout()">Save Workout</button>
+  </div>
+
+</div>
+
+<!-- ===================== WORKOUTS TAB ===================== -->
+<div id="tab-workouts" style="display:none;">
+
   <div class="section-label">THE MOVES (30 MIN)</div>
 
   <div class="card">
-    <strong>How it should feel (quick rules)</strong>
-    <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.6">
+    <strong>How it should feel (the universal rules)</strong>
+    <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.55">
       <li><strong>You SHOULD feel:</strong> muscles working, controlled burn, steady breathing.</li>
       <li><strong>You should NOT feel:</strong> sharp joint pain, pinching in low back/neck, numbness/tingling.</li>
       <li><strong>Form rule:</strong> if form breaks, stop the set—even if reps aren’t done.</li>
-      <li><strong>Progress rule:</strong> when you can hit the top reps with good form, add <strong>+2.5–5 lbs</strong> next time.</li>
+      <li><strong>Progress rule:</strong> when you hit the <strong>top reps/time</strong> with good form, add <strong>+1–2 reps</strong> or <strong>+2.5–5 lbs</strong> next time.</li>
     </ul>
   </div>
 
   <!-- MONDAY -->
-  <div class="card workout-card" data-day="monday">
-    <div class="workout-head">
-      <div class="title">
+  <div class="card workout-card">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <div>
         <strong>Monday: Leg Day</strong>
-        <div style="color:rgba(255,255,255,.70);margin-top:6px;">Warm-up (5 min): brisk walk + hip circles</div>
+        <div class="muted" style="margin-top:4px;">Warm-up (5 min): brisk walk + hip circles</div>
       </div>
-      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('monday')">
-        <span id="chev-monday">▾</span> <span id="lbl-monday">Collapse</span>
-      </button>
+      <button class="btn-ghost" onclick="toggleWorkout('monday')"><span id="chev-monday">▾</span> <span id="lbl-monday">Collapse</span></button>
     </div>
 
     <div id="body-monday" style="margin-top:14px;">
       <div class="ex" data-exid="monday-goblet">
-        <strong>1) Goblet Squat</strong>
-        <div class="meta">3 sets × 10–12 • Rest 60s</div>
-        <div class="hint"><em>Do:</em> chest up, knees track over toes. <em>Don’t:</em> collapse knees inward.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=goblet+squat+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>1) Goblet Squat</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=MeIiIdhvXT4" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">10–12 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Do:</em> chest up, knees track over toes. <em>Don’t:</em> collapse knees inward.</div>
+        <div class="ex-rule"><b>How it should feel:</b> quads + glutes working, stable core. <b>Progress:</b> hit 12 reps for all sets → add +2.5–5 lbs next time.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="monday-lunge">
-        <strong>2) Reverse Lunge</strong>
-        <div class="meta">3 sets × 8–10/leg • Rest 60s</div>
-        <div class="hint"><em>Feel:</em> glute/quad. <em>Don’t:</em> slam knee or lean forward.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=reverse+lunge+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>2) Reverse Lunge</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=UH_7o9S3xqU" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">8–10/leg</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> glute/quad. <em>Don’t:</em> slam knee or lean forward.</div>
+        <div class="ex-rule"><b>How it should feel:</b> front leg doing the work; steady balance. <b>Progress:</b> hit 10/leg clean → add +1–2 reps/leg or hold light dumbbells.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="monday-hiphinge">
-        <strong>3) DB Romanian Deadlift</strong>
-        <div class="meta">3 sets × 10–12 • Rest 60s</div>
-        <div class="hint"><em>Feel:</em> hamstrings stretching. <em>Don’t:</em> round back.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>3) DB Romanian Deadlift</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=0Y8JdZ5xX9Q" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">10–12 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> hamstrings stretching. <em>Don’t:</em> round back.</div>
+        <div class="ex-rule"><b>How it should feel:</b> hamstrings + glutes loaded, back neutral. <b>Progress:</b> 12 reps all sets → add +5 lbs total next time.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="monday-finisher">
-        <strong>4) 2-Min Finisher: Wall Sit</strong>
-        <div class="meta">2 rounds: 45s hold + 15s rest</div>
-        <div class="hint"><em>Feel:</em> quad burn. <em>Don’t:</em> hold breath.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=wall+sit+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>4) Wall Sit (Finisher)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=-cdph8hv0O0" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">2 rounds</span>
+            <span class="pill">45s hold</span>
+          </div>
         </div>
+        <div class="ex-meta">2 rounds: 45s hold + 15s rest</div>
+        <div class="ex-rule"><b>How it should feel:</b> deep quad burn without knee pain. <b>Progress:</b> add +5–10 seconds per round next time.</div>
       </div>
 
-      <div class="pill">
-        <strong>Cool-down (3–5 min):</strong><br>
-        <span style="color:rgba(255,255,255,.72)">Quad stretch • Hamstring stretch • Figure-4 glute stretch</span>
+      <div class="savebar">
+        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
       </div>
-
-      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
     </div>
   </div>
 
   <!-- TUESDAY -->
-  <div class="card workout-card" data-day="tuesday">
-    <div class="workout-head">
-      <div class="title">
+  <div class="card workout-card">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <div>
         <strong>Tuesday: Core + Pilates</strong>
-        <div style="color:rgba(255,255,255,.70);margin-top:6px;">Warm-up (3 min): cat/cow + deep breaths</div>
+        <div class="muted" style="margin-top:4px;">Warm-up (3 min): cat/cow + deep breaths</div>
       </div>
-      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('tuesday')">
-        <span id="chev-tuesday">▾</span> <span id="lbl-tuesday">Collapse</span>
-      </button>
+      <button class="btn-ghost" onclick="toggleWorkout('tuesday')"><span id="chev-tuesday">▾</span> <span id="lbl-tuesday">Collapse</span></button>
     </div>
 
     <div id="body-tuesday" style="margin-top:14px;">
       <div class="ex" data-exid="tuesday-birddog">
-        <strong>1) Bird Dog</strong>
-        <div class="meta">3 sets × 10–12/side • Rest 30s</div>
-        <div class="hint"><em>Feel:</em> deep core. <em>Don’t:</em> rotate hips.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=bird+dog+exercise+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>1) Bird Dog</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">10–12/side</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> deep core. <em>Don’t:</em> rotate hips.</div>
+        <div class="ex-rule"><b>How it should feel:</b> abs bracing + glute firing; slow control. <b>Progress:</b> add +2 reps/side or slow the tempo (3 seconds out).</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="tuesday-deadbug">
-        <strong>2) Dead Bug</strong>
-        <div class="meta">3 sets × 8–10/side • Rest 30s</div>
-        <div class="hint"><em>You should feel:</em> abs bracing. <em>Don’t:</em> low back arch.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dead+bug+exercise+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>2) Dead Bug</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=4C7xZ2tR2iY" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">8–10/side</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> abs holding spine. <em>Don’t:</em> low back arch.</div>
+        <div class="ex-rule"><b>How it should feel:</b> abs “locked in,” ribs down. <b>Progress:</b> add +1–2 reps/side or extend legs a bit lower.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="tuesday-sideplank">
-        <strong>3) Side Plank</strong>
-        <div class="meta">3 sets × 20–30s/side • Rest 30s</div>
-        <div class="hint"><em>Feel:</em> obliques. <em>Don’t:</em> sink shoulder.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=side+plank+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>3) Side Plank</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=K2VljzCC16g" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">20–30s/side</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> obliques. <em>Don’t:</em> sink shoulder.</div>
+        <div class="ex-rule"><b>How it should feel:</b> side abs + glute on the bottom side working. <b>Progress:</b> add +5 seconds/side next time.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="tuesday-glutebridge">
-        <strong>4) Glute Bridge</strong>
-        <div class="meta">3 sets × 12–15 • Rest 30–45s</div>
-        <div class="hint"><em>Feel:</em> glutes at the top. <em>Don’t:</em> push through low back.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>4) Glute Bridge</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">12–15 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> glutes at the top. <em>Don’t:</em> push through low back.</div>
+        <div class="ex-rule"><b>How it should feel:</b> glutes squeezing, ribs down. <b>Progress:</b> hit 15 reps → add a pause (2 seconds at top) or add weight on hips.</div>
       </div>
 
-      <div class="pill">
-        <strong>Cool-down (3 min):</strong><br>
-        <span style="color:rgba(255,255,255,.72)">Child’s pose • Supine twist • Deep breathing</span>
+      <div class="savebar">
+        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
       </div>
-
-      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
     </div>
   </div>
 
   <!-- WEDNESDAY -->
-  <div class="card workout-card" data-day="wednesday">
-    <div class="workout-head">
-      <div class="title">
+  <div class="card workout-card">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <div>
         <strong>Wednesday: Upper Body</strong>
-        <div style="color:rgba(255,255,255,.70);margin-top:6px;">Warm-up (5 min): arm circles + light rows</div>
+        <div class="muted" style="margin-top:4px;">Warm-up (5 min): arm circles + light rows</div>
       </div>
-      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('wednesday')">
-        <span id="chev-wednesday">▾</span> <span id="lbl-wednesday">Collapse</span>
-      </button>
+      <button class="btn-ghost" onclick="toggleWorkout('wednesday')"><span id="chev-wednesday">▾</span> <span id="lbl-wednesday">Collapse</span></button>
     </div>
 
     <div id="body-wednesday" style="margin-top:14px;">
       <div class="ex" data-exid="wed-press">
-        <strong>1) DB Overhead Press</strong>
-        <div class="meta">3 sets × 8–10 • Rest 60s</div>
-        <div class="hint"><em>Feel:</em> shoulders/triceps. <em>Don’t:</em> arch low back.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+overhead+press+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>1) DB Overhead Press</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/shorts/D4vIbA7o0oQ" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">8–10 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> shoulders/triceps. <em>Don’t:</em> arch low back.</div>
+        <div class="ex-rule"><b>How it should feel:</b> shoulders burning, core tight. <b>Progress:</b> hit 10 reps all sets → add +2.5–5 lbs next time.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="wed-row">
-        <strong>2) DB Row</strong>
-        <div class="meta">3 sets × 10–12 • Rest 60s</div>
-        <div class="hint"><em>Feel:</em> lats/upper back. <em>Don’t:</em> shrug shoulder to ear.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+row+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>2) DB Row</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=roCP6wCXPqo" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">10–12 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> lats/upper back. <em>Don’t:</em> shrug shoulder to ear.</div>
+        <div class="ex-rule"><b>How it should feel:</b> back pulling, elbow driving to hip. <b>Progress:</b> hit 12 reps → add +5 lbs or add a 1-second squeeze at top.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="wed-lateral">
-        <strong>3) Lateral Raise</strong>
-        <div class="meta">3 sets × 12–15 • Rest 45s</div>
-        <div class="hint"><em>Feel:</em> side delts. <em>Don’t:</em> swing weights.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=lateral+raise+proper+form">Watch video ▶</a>
+        <div class="ex-title">
+          <div><strong>3) Lateral Raise</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=3VcKaXpzqRo" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">3 sets</span>
+            <span class="pill">12–15 reps</span>
+          </div>
         </div>
+        <div class="ex-meta"><em>Feel:</em> side delts. <em>Don’t:</em> swing weights.</div>
+        <div class="ex-rule"><b>How it should feel:</b> shoulders burning without neck tension. <b>Progress:</b> hit 15 reps clean → add +1–2 reps OR slightly heavier weight.</div>
       </div>
 
       <hr>
 
       <div class="ex" data-exid="wed-arms">
-        <strong>4) Arms Finisher (Curls + Kickbacks)</strong>
-        <div class="meta">2 rounds: curls 12 + tricep kickbacks 12 (minimal rest)</div>
-        <div class="hint"><em>Feel:</em> pump. <em>Don’t:</em> lock elbows hard.</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+bicep+curl+proper+form">Curls ▶</a>
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+tricep+kickback+proper+form">Kickbacks ▶</a>
+        <div class="ex-title">
+          <div><strong>4) Arms Finisher (Curls + Kickbacks)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=ykJmrZ5v0Oo" target="_blank" rel="noopener">▶ Curls</a></span>
+            <span class="pill"><a href="https://www.youtube.com/watch?v=6SS6K3lAwZ8" target="_blank" rel="noopener">▶ Kickbacks</a></span>
+            <span class="pill">2 rounds</span>
+          </div>
         </div>
+        <div class="ex-meta">2 rounds: curls 12 + tricep kickbacks 12 (minimal rest)</div>
+        <div class="ex-rule"><b>How it should feel:</b> arm pump, controlled reps. <b>Progress:</b> add +2 reps each OR slightly heavier weight next week.</div>
       </div>
 
-      <div class="pill">
-        <strong>Cool-down (3–5 min):</strong><br>
-        <span style="color:rgba(255,255,255,.72)">Chest doorway stretch • Upper back stretch • Neck gentle stretch</span>
+      <div class="savebar">
+        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
       </div>
-
-      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
     </div>
   </div>
 
   <!-- THURSDAY -->
-  <div class="card workout-card" data-day="thursday">
-    <div class="workout-head">
-      <div class="title">
+  <div class="card workout-card">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <div>
         <strong>Thursday: Full Body Circuit</strong>
-        <div style="color:rgba(255,255,255,.70);margin-top:6px;">Warm-up (5 min): walk + bodyweight squats + shoulder rolls</div>
+        <div class="muted" style="margin-top:4px;">Warm-up (5 min): walk + squats + shoulder rolls</div>
       </div>
-      <button class="btn" style="padding:10px 14px;font-size:.9rem" onclick="toggleWorkout('thursday')">
-        <span id="chev-thursday">▾</span> <span id="lbl-thursday">Collapse</span>
-      </button>
+      <button class="btn-ghost" onclick="toggleWorkout('thursday')"><span id="chev-thursday">▾</span> <span id="lbl-thursday">Collapse</span></button>
     </div>
 
     <div id="body-thursday" style="margin-top:14px;">
-      <div style="color:rgba(255,255,255,.78)">
-        <strong>Circuit:</strong> do moves 1–4, rest 60–90s, repeat.
-        <div style="margin-top:8px;"><strong>3 rounds</strong> total</div>
-      </div>
+      <div class="muted"><strong>Circuit:</strong> do moves 1–4, rest 60–90s, repeat for <strong>3 rounds</strong>.</div>
 
       <hr>
 
       <div class="ex" data-exid="thu-squat">
-        <strong>1) Squat</strong>
-        <div class="meta">10–12 reps</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=bodyweight+squat+proper+form">Bodyweight ▶</a>
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=goblet+squat+proper+form">Goblet ▶</a>
+        <div class="ex-title">
+          <div><strong>1) Squat (bodyweight or DB goblet)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=DlS-GAF8Edg" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">10–12 reps</span>
+          </div>
         </div>
+        <div class="ex-rule"><b>How it should feel:</b> quads + glutes, steady feet. <b>Progress:</b> add +2 reps or hold a light dumbbell.</div>
       </div>
+
+      <hr>
 
       <div class="ex" data-exid="thu-push">
-        <strong>2) Push (incline push-up or DB press)</strong>
-        <div class="meta">8–12 reps</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=incline+push+up+proper+form">Incline push-up ▶</a>
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+bench+press+proper+form">DB press ▶</a>
+        <div class="ex-title">
+          <div><strong>2) Push (incline push-up or DB press)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/shorts/wD1M-f69Yy8" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">8–12 reps</span>
+          </div>
         </div>
+        <div class="ex-rule"><b>How it should feel:</b> chest/triceps working, core tight. <b>Progress:</b> lower the incline OR add reps.</div>
       </div>
+
+      <hr>
 
       <div class="ex" data-exid="thu-pull">
-        <strong>3) Pull (row)</strong>
-        <div class="meta">10–12 reps</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dumbbell+row+proper+form">DB row ▶</a>
+        <div class="ex-title">
+          <div><strong>3) Pull (row)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=roCP6wCXPqo" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">10–12 reps</span>
+          </div>
         </div>
+        <div class="ex-rule"><b>How it should feel:</b> upper back + lats, not neck. <b>Progress:</b> add +5 lbs or add a 1-second squeeze.</div>
       </div>
+
+      <hr>
 
       <div class="ex" data-exid="thu-core">
-        <strong>4) Core (mountain climbers)</strong>
-        <div class="meta">20–30 seconds</div>
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn-ghost" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=mountain+climbers+proper+form">Watch ▶</a>
+        <div class="ex-title">
+          <div><strong>4) Core (mountain climbers)</strong></div>
+          <div class="pills">
+            <span class="pill"><a href="https://www.youtube.com/watch?v=hq_0YlyfqGM" target="_blank" rel="noopener">▶ YouTube</a></span>
+            <span class="pill">20–30 seconds</span>
+          </div>
         </div>
+        <div class="ex-rule"><b>How it should feel:</b> abs bracing + breathing controlled. <b>Progress:</b> add +5 seconds or keep hips steadier.</div>
       </div>
 
-      <div class="pill">
-        <strong>Cool-down (3 min):</strong><br>
-        <span style="color:rgba(255,255,255,.72)">Hamstring stretch • Quad stretch • Child’s pose</span>
+      <div class="savebar">
+        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
       </div>
-
-      <button class="btn" style="margin-top:14px;width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
     </div>
   </div>
 
-  <!-- PROGRESS PHOTOS GALLERY -->
+</div>
+
+<!-- ===================== PHOTOS TAB ===================== -->
+<div id="tab-photos" style="display:none;">
+
+  <div class="card">
+    <strong>Progress Photos (max 3/day)</strong>
+    <p class="muted small" style="margin-top:8px;">Stored locally on this device (not uploaded anywhere).</p>
+    <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
+    <div id="photoPreview" style="margin-top:12px;"></div>
+  </div>
+
   <div class="section-label">PROGRESS PHOTO GALLERY</div>
   <div class="card">
     <strong>Browse saved days</strong>
-    <p style="color:rgba(255,255,255,.72);margin-top:8px;">All photos are stored locally on this device (not uploaded anywhere).</p>
     <div id="galleryList" style="display:grid;gap:12px;margin-top:12px;"></div>
-    <button class="btn" style="margin-top:12px;width:100%" onclick="clearAllPhotos()">Clear ALL stored photos</button>
+    <button class="btn-ghost" style="margin-top:12px;width:100%" onclick="clearAllPhotos()">Clear ALL stored photos</button>
   </div>
+
+</div>
 
 </div><!-- /.container -->
 
-<!-- CONFETTI BUTTON -->
-<div style="position:fixed;left:0;right:0;bottom:22px;display:flex;justify-content:center;z-index:100;pointer-events:none;">
-  <button class="btn" style="pointer-events:auto;padding:16px 22px;font-size:1.05rem" onclick="fireConfetti()">I CRUSHED IT! 🎊</button>
+<div class="fixed-cta">
+  <button class="btn" onclick="fireConfetti()">I CRUSHED IT! 🎊</button>
 </div>
 
 <script>
+/** =========================
+ *  TABS
+ *  ========================= */
+function showTab(id){
+  ["tab-home","tab-workouts","tab-photos"].forEach(t=>{
+    const el = document.getElementById(t);
+    if (el) el.style.display = (t===id) ? "block" : "none";
+  });
+  document.querySelectorAll(".tabbtn").forEach(b=>{
+    b.classList.toggle("active", b.getAttribute("data-tab")===id);
+  });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
 /** =========================
  *  STORAGE
  *  ========================= */
@@ -542,7 +718,9 @@ const STORAGE = {
   photos: "bgwDailyPhotos",
   workoutLog: "bgwWorkoutLog",
   exerciseLogs: "bgwExerciseLogs",
-  workoutCollapsed: "bgwWorkoutCollapsed"
+  workoutCollapsed: "bgwWorkoutCollapsed",
+  water: "bgwWaterDaily",
+  waterStreak: "bgwWaterStreak"
 };
 
 function safeParse(json, fallback) {
@@ -555,9 +733,6 @@ function todayKey() {
   const dd = String(d.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 }
-function dayNameLower() {
-  return new Date().toLocaleDateString(undefined, { weekday: "long" }).toLowerCase();
-}
 function prettyDay() {
   const d = new Date();
   return d.toLocaleDateString(undefined, { weekday:"long", month:"short", day:"numeric" });
@@ -569,20 +744,20 @@ function dateSeed() {
   return h;
 }
 
-/** DAILY HEADER */
+/** Header */
 document.getElementById("dailyHeader").textContent = `Her Era • ${prettyDay()} Edition`;
 
-/** ONE THING */
+/** One thing */
 const oneThings = [
   "Hit your protein today (even if nothing else is perfect).",
   "Take a 10-minute walk. Momentum counts.",
-  "Do the workout window — 30 minutes. In and out.",
+  "Do the workout — 30 minutes. In and out.",
   "Hydrate early so you don’t crash later.",
   "Sleep is the secret weapon. Protect it."
 ];
 document.getElementById("oneThing").textContent = oneThings[dateSeed() % oneThings.length];
 
-/** QUOTE + VERSE */
+/** Quote + Verse */
 const quotes = [
   "Small steps, loud results.",
   "Consistency is the real glow-up.",
@@ -602,27 +777,150 @@ const verses = [
 document.getElementById("dailyQuote").textContent = quotes[dateSeed() % quotes.length];
 document.getElementById("dailyVerse").textContent = verses[(dateSeed() + 2) % verses.length];
 
-/** TODAY FOCUS */
-const today = dayNameLower();
-const workoutLabelByDay = {
-  monday: "Leg Day",
-  tuesday: "Core + Pilates",
-  wednesday: "Upper Body",
-  thursday: "Full Body Circuit",
-  friday: "Recovery",
-  saturday: "Recovery",
-  sunday: "Recovery"
-};
-document.getElementById("todayFocus").textContent =
-  `Focus: ${workoutLabelByDay[today] || "Recovery"} — aim for the 3:15 workout window.`;
+/** =========================
+ *  SPOTIFY + VIBRATION
+ *  ========================= */
+function buzz(pattern=[20,30,20]){
+  const note = document.getElementById("vibeNote");
+  if (!("vibrate" in navigator)) {
+    if (note) note.textContent = "Vibration isn’t supported on this device/browser.";
+    return;
+  }
+  navigator.vibrate(pattern);
+  if (note) note.textContent = "Vibe sent ✅ (If you feel nothing, try adding this to Home Screen as a PWA.)";
+}
+function openSpotify(){
+  // Try to open the Spotify app first; fallback to web.
+  const query = encodeURIComponent("workout");
+  const appUrl = `spotify:search:${query}`;
+  const webUrl = `https://open.spotify.com/search/${query}`;
 
-/** CHECKLIST */
+  // App attempt
+  const t = setTimeout(()=>{ window.open(webUrl, "_blank", "noopener"); }, 550);
+  window.location.href = appUrl;
+
+  // If navigation succeeds, timeout likely won't matter; if it fails, web opens.
+  setTimeout(()=>clearTimeout(t), 700);
+}
+
+/** =========================
+ *  WATER TRACKER
+ *  ========================= */
+const WATER_GOAL_OZ = 80; // change if you want
+document.getElementById("waterGoalText").textContent = `${WATER_GOAL_OZ} oz`;
+
+function loadWaterAll(){ return safeParse(localStorage.getItem(STORAGE.water), {}); }
+function saveWaterAll(all){ localStorage.setItem(STORAGE.water, JSON.stringify(all)); }
+
+function getWaterToday(){
+  const all = loadWaterAll();
+  const k = todayKey();
+  const entry = all[k] || { oz: 0, history: [] };
+  return { all, k, entry };
+}
+
+function calcWaterStreak(all){
+  // streak = consecutive days (ending yesterday or today) hitting goal
+  const keys = Object.keys(all).sort(); // ascending
+  if (!keys.length) return 0;
+
+  // build set for quick lookup
+  const map = new Map(keys.map(k => [k, all[k]]));
+  // walk backward from today
+  let streak = 0;
+  let d = new Date();
+  for (let i = 0; i < 365; i++){
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    const key = `${yyyy}-${mm}-${dd}`;
+    const v = map.get(key);
+    if (v && (v.oz || 0) >= WATER_GOAL_OZ) {
+      streak++;
+      d.setDate(d.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+function renderWater(){
+  const { all, k, entry } = getWaterToday();
+  const oz = Math.max(0, Number(entry.oz || 0));
+  const pct = Math.max(0, Math.min(100, Math.round((oz / WATER_GOAL_OZ) * 100)));
+
+  document.getElementById("waterNow").textContent = `${oz} oz`;
+  const left = Math.max(0, WATER_GOAL_OZ - oz);
+  document.getElementById("waterLeft").textContent = left ? `${left} oz left` : `Goal hit 🎯`;
+  document.getElementById("waterBarFill").style.width = `${pct}%`;
+
+  const streak = calcWaterStreak(all);
+  document.getElementById("waterStreak").textContent = String(streak);
+
+  // gentle reward vibration when goal reached
+  if (oz >= WATER_GOAL_OZ && !entry.goalBuzzed){
+    entry.goalBuzzed = true;
+    all[k] = entry;
+    saveWaterAll(all);
+    buzz([30,60,30]);
+    fireConfetti();
+  }
+}
+
+function addWater(amount){
+  const { all, k, entry } = getWaterToday();
+  const n = Math.max(0, Number(amount || 0));
+  entry.oz = Math.max(0, Math.round((Number(entry.oz || 0) + n)));
+  entry.history = entry.history || [];
+  entry.history.push(n);
+  entry.goalBuzzed = Boolean(entry.goalBuzzed) && entry.oz >= WATER_GOAL_OZ;
+  all[k] = entry;
+  saveWaterAll(all);
+  renderWater();
+}
+
+function addWaterCustom(){
+  const inp = document.getElementById("waterCustom");
+  const val = Number((inp.value || "").trim());
+  if (!val || val <= 0) { alert("Enter a number of ounces (ex: 12)."); return; }
+  addWater(val);
+  inp.value = "";
+}
+
+function undoWater(){
+  const { all, k, entry } = getWaterToday();
+  entry.history = entry.history || [];
+  const last = entry.history.pop();
+  if (!last) { alert("Nothing to undo."); return; }
+  entry.oz = Math.max(0, Math.round((Number(entry.oz || 0) - last)));
+  // allow buzz again if they go below goal
+  if (entry.oz < WATER_GOAL_OZ) entry.goalBuzzed = false;
+  all[k] = entry;
+  saveWaterAll(all);
+  renderWater();
+}
+
+function resetWater(){
+  if (!confirm("Reset today’s water tracker?")) return;
+  const { all, k } = getWaterToday();
+  all[k] = { oz: 0, history: [], goalBuzzed: false };
+  saveWaterAll(all);
+  renderWater();
+}
+
+renderWater();
+
+/** =========================
+ *  DAILY CHECKLIST
+ *  ========================= */
 const checklistEl = document.getElementById("checklist");
 const checkMetaText = document.getElementById("checkMetaText");
+
 const defaultChecklist = [
   { id: "water", title: "Hydrate", sub: "Water + morning essentials" },
   { id: "protein", title: "Protein", sub: "High-protein lunch + snack" },
-  { id: "move", title: "Movement", sub: "Workout window or walk" },
+  { id: "move", title: "Movement", sub: "Workout or 10-min walk" },
   { id: "sleep", title: "Recovery", sub: "Wind-down + stretch" }
 ];
 
@@ -657,7 +955,7 @@ function renderChecklist() {
         ${isDone ? "✓" : ""}
       </div>
       <div>
-        <div style="font-weight:900">${item.title}</div>
+        <div style="font-weight:1000">${item.title}</div>
         <div style="color:rgba(255,255,255,.70);font-size:.9rem;margin-top:2px">${item.sub}</div>
       </div>
     `;
@@ -684,7 +982,9 @@ function resetToday() {
 }
 renderChecklist();
 
-/** 26 LB TRACKER */
+/** =========================
+ *  26 LB TRACKER
+ *  ========================= */
 const grid = document.getElementById("trackerGrid");
 const totalPounds = 26;
 let progress = safeParse(localStorage.getItem(STORAGE.progress), []);
@@ -700,41 +1000,25 @@ function resetProgress() {
   if (!confirm("Reset the 26-lb tracker?")) return;
   progress = [];
   localStorage.removeItem(STORAGE.progress);
-  document.querySelectorAll(".lb").forEach(b => b.style.background = "rgba(255,255,255,.06)");
+  document.querySelectorAll(".lb").forEach(b => b.classList.remove("on"));
   renderCount();
 }
-
 for (let i = 0; i < totalPounds; i++) {
   const bubble = document.createElement("div");
   bubble.className = "lb";
   bubble.textContent = i + 1;
-  bubble.style.aspectRatio = "1";
-  bubble.style.borderRadius = "999px";
-  bubble.style.display = "flex";
-  bubble.style.alignItems = "center";
-  bubble.style.justifyContent = "center";
-  bubble.style.border = "1px solid rgba(255,255,255,.12)";
-  bubble.style.background = "rgba(255,255,255,.06)";
-  bubble.style.fontWeight = "900";
-  bubble.style.color = "rgba(255,255,255,.70)";
-  bubble.style.cursor = "pointer";
 
-  if (progress.includes(i)) {
-    bubble.style.background = "linear-gradient(180deg, rgba(255,59,212,.95), rgba(57,245,255,.85))";
-    bubble.style.color = "#07070c";
-  }
+  if (progress.includes(i)) bubble.classList.add("on");
 
   bubble.addEventListener("click", () => {
     const idx = i;
     const checked = progress.includes(idx);
     if (checked) {
       progress = progress.filter(p => p !== idx);
-      bubble.style.background = "rgba(255,255,255,.06)";
-      bubble.style.color = "rgba(255,255,255,.70)";
+      bubble.classList.remove("on");
     } else {
       progress.push(idx);
-      bubble.style.background = "linear-gradient(180deg, rgba(255,59,212,.95), rgba(57,245,255,.85))";
-      bubble.style.color = "#07070c";
+      bubble.classList.add("on");
       fireConfetti();
     }
     saveProgress();
@@ -744,20 +1028,21 @@ for (let i = 0; i < totalPounds; i++) {
 }
 renderCount();
 
-/** WORKOUT COLLAPSE */
+/** =========================
+ *  WORKOUT COLLAPSE
+ *  ========================= */
 let workoutCollapsed = safeParse(localStorage.getItem(STORAGE.workoutCollapsed), {});
 function toggleWorkout(day) {
   const body = document.getElementById(`body-${day}`);
   const chev = document.getElementById(`chev-${day}`);
   const lbl = document.getElementById(`lbl-${day}`);
-
   const isCollapsed = Boolean(workoutCollapsed[day]);
-  const nextCollapsed = !isCollapsed;
+  const next = !isCollapsed;
 
-  workoutCollapsed[day] = nextCollapsed;
+  workoutCollapsed[day] = next;
   localStorage.setItem(STORAGE.workoutCollapsed, JSON.stringify(workoutCollapsed));
 
-  if (nextCollapsed) {
+  if (next) {
     body.style.display = "none";
     chev.textContent = "▸";
     lbl.textContent = "Expand";
@@ -771,7 +1056,9 @@ function toggleWorkout(day) {
   if (workoutCollapsed[day]) toggleWorkout(day);
 });
 
-/** WEEKLY CHECK-IN */
+/** =========================
+ *  WEEKLY CHECK-IN
+ *  ========================= */
 function weekKey(d=new Date()){
   const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
   const dayNum = date.getUTCDay() || 7;
@@ -794,7 +1081,9 @@ function saveCheckIn(){
   alert("Weekly check-in saved locally ✅");
 }
 
-/** WORKOUT LOG (TEXT) */
+/** =========================
+ *  WORKOUT LOG (TEXT)
+ *  ========================= */
 function saveWorkout(){
   const all = safeParse(localStorage.getItem(STORAGE.workoutLog), {});
   all[todayKey()] = document.getElementById("workoutLog").value;
@@ -802,19 +1091,22 @@ function saveWorkout(){
   alert("Workout log saved locally ✅");
 }
 
-/** EXERCISE LOGS (auto-add inputs + save) */
+/** =========================
+ *  EXERCISE LOG INPUTS + SAVE
+ *  ========================= */
 function ensureLogInputs(){
   document.querySelectorAll(".ex[data-exid]").forEach(ex=>{
     if(ex.querySelector("input.log")) return;
     const wrap = document.createElement("div");
-    wrap.className = "logwrap";
+    wrap.style.marginTop = "10px";
     wrap.innerHTML = `
-      <input class="log" placeholder="Last: ___ (lbs/reps/time)" />
+      <input class="log" placeholder="Last time: ___ (lbs/reps/time)" />
       <input class="log" placeholder="Today: ___ (lbs/reps/time)" />
     `;
     ex.appendChild(wrap);
   });
 }
+ensureLogInputs();
 
 function saveExerciseLogs(){
   const all = safeParse(localStorage.getItem(STORAGE.exerciseLogs), {});
@@ -833,7 +1125,9 @@ function saveExerciseLogs(){
   alert("Exercise logs saved locally ✅");
 }
 
-/** PHOTOS */
+/** =========================
+ *  PHOTOS (LOCAL)
+ *  ========================= */
 function loadPhotosAll(){ return safeParse(localStorage.getItem(STORAGE.photos), {}); }
 function savePhotosAll(all){ localStorage.setItem(STORAGE.photos, JSON.stringify(all)); }
 
@@ -889,19 +1183,30 @@ function renderTodayPhotos(){
 
   const list = all[key] || [];
   if (!list.length) {
-    wrap.innerHTML = `<div style="color:rgba(255,255,255,.65)">No photos saved today yet.</div>`;
+    wrap.innerHTML = `<div class="muted">No photos saved today yet.</div>`;
     return;
   }
 
   const row = document.createElement("div");
-  row.className = "thumbRow";
+  row.style.display = "flex";
+  row.style.gap = "10px";
+  row.style.flexWrap = "wrap";
 
   list.forEach((src, idx) => {
     const box = document.createElement("div");
-    box.className = "thumbBox";
+    box.style.position = "relative";
+    box.style.width = "96px";
+    box.style.height = "96px";
+    box.style.borderRadius = "16px";
+    box.style.overflow = "hidden";
+    box.style.border = "1px solid rgba(255,255,255,.12)";
+    box.style.background = "rgba(255,255,255,.06)";
 
     const img = document.createElement("img");
     img.src = src;
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
 
     const del = document.createElement("button");
     del.textContent = "✕";
@@ -913,7 +1218,7 @@ function renderTodayPhotos(){
     del.style.padding = "6px 8px";
     del.style.background = "rgba(0,0,0,.55)";
     del.style.color = "white";
-    del.style.fontWeight = "900";
+    del.style.fontWeight = "1000";
     del.onclick = () => removePhotoForDay(key, idx);
 
     box.appendChild(img);
@@ -925,7 +1230,7 @@ function renderTodayPhotos(){
   const note = document.createElement("div");
   note.style.marginTop = "10px";
   note.style.color = "rgba(255,255,255,.70)";
-  note.style.fontWeight = "800";
+  note.style.fontWeight = "900";
   note.textContent = `${list.length} / 3 saved today`;
   wrap.appendChild(note);
 }
@@ -947,7 +1252,7 @@ function renderGallery(){
 
   const keys = Object.keys(all).sort().reverse();
   if (!keys.length){
-    listEl.innerHTML = `<div style="color:rgba(255,255,255,.65)">No photos saved yet.</div>`;
+    listEl.innerHTML = `<div class="muted">No photos saved yet.</div>`;
     return;
   }
 
@@ -963,14 +1268,14 @@ function renderGallery(){
     top.style.display = "flex";
     top.style.justifyContent = "space-between";
     top.style.alignItems = "center";
-    top.style.flexWrap = "wrap";
-    top.style.gap = "10px";
-    top.innerHTML = `<strong>${k}</strong><span style="color:rgba(255,255,255,.70);font-weight:900">${photos.length} photo(s)</span>`;
+    top.innerHTML = `<strong>${k}</strong><span class="muted" style="font-weight:1000">${photos.length} photo(s)</span>`;
     card.appendChild(top);
 
     const row = document.createElement("div");
-    row.className = "thumbRow";
+    row.style.display = "flex";
+    row.style.gap = "10px";
     row.style.marginTop = "10px";
+    row.style.flexWrap = "wrap";
 
     photos.forEach(src => {
       const img = document.createElement("img");
@@ -998,7 +1303,9 @@ function clearAllPhotos(){
 renderTodayPhotos();
 renderGallery();
 
-/** CONFETTI */
+/** =========================
+ *  CONFETTI
+ *  ========================= */
 function fireConfetti() {
   const colors = ["#ff3bd4", "#39f5ff", "#a6ff4d", "#8a5cff", "#ff9f2e"];
   for (let i = 0; i < 56; i++) {
@@ -1014,24 +1321,7 @@ function fireConfetti() {
     setTimeout(() => conf.remove(), 4200);
   }
 }
-
-/** INSTALL TIP */
-function dismissInstallTip(){
-  localStorage.setItem("bgwInstallTipDismissed", "1");
-  const el = document.getElementById("installCard");
-  if (el) el.style.display = "none";
-}
-(function maybeShowInstallTip(){
-  const dismissed = localStorage.getItem("bgwInstallTipDismissed") === "1";
-  const isStandalone = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
-  const el = document.getElementById("installCard");
-  if (!el) return;
-  if (!dismissed && !isStandalone) el.style.display = "block";
-})();
-
-/* Make every exercise log-ready */
-ensureLogInputs();
 </script>
 
 </body>
-        </html>
+    </html>
