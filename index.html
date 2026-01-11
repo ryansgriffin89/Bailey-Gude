@@ -1,1396 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bailey’s Guide to Wellness</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>My Daily Guide</title>
+  
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" content="#121212" />
+  <meta name="mobile-web-app-capable" content="yes">
 
-<link rel="manifest" href="./manifest.webmanifest" />
-<meta name="theme-color" content="#0b0b12" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon.png">
 
-<style>
-:root{
-  /* ===== BOHO / NEUTRAL PALETTE ===== */
-  --bg0:#faf7f2;        /* warm paper */
-  --bg1:#f2ece3;        /* soft sand */
-  --card:#ffffffcc;     /* translucent cream */
-  --stroke:rgba(40,30,20,.10);
-
-  --text:rgba(34,28,22,.92);     /* warm charcoal */
-  --muted:rgba(34,28,22,.62);
-
-  --accent:#c08a6a;     /* clay */
-  --accent2:#9aa790;    /* muted sage */
-  --accent3:#d8c3a5;    /* oat */
-
-  --radius:22px;
-  --shadow:0 18px 50px rgba(50,35,25,.10);
-
-  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-  margin:0;
-  font-family:var(--font);
-  color:var(--text);
-  background:
-    radial-gradient(900px 600px at 20% 0%, rgba(154,167,144,.18), transparent 55%),
-    radial-gradient(800px 600px at 95% 10%, rgba(192,138,106,.16), transparent 55%),
-    linear-gradient(180deg,var(--bg0),var(--bg1));
-}
-
-a{color:inherit}
-
-header{
-  text-align:center;
-  padding:26px 18px 14px;
-}
-h1{
-  margin:0;
-  font-size:1.65rem;
-  font-weight:900;
-  letter-spacing:.2px;
-}
-.subtitle{
-  margin-top:8px;
-  font-size:.78rem;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
-.container{
-  max-width:720px;
-  margin:auto;
-  padding:0 14px 170px;
-}
-
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:18px;
-  margin-bottom:14px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--stroke);
-  backdrop-filter: blur(8px);
-}
-
-.section-label{
-  margin:26px 8px 12px;
-  font-size:.74rem;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:rgba(34,28,22,.70);
-  font-weight:900
-}
-
-button{font-family:inherit;cursor:pointer}
-.btn{
-  border:none;
-  border-radius:999px;
-  padding:14px 18px;
-  font-weight:900;
-  background:linear-gradient(90deg,var(--accent),var(--accent3));
-  color:#251b14;
-  box-shadow:0 10px 30px rgba(192,138,106,.18);
-}
-.btn:hover{filter:saturate(1.05);transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-
-.btn-ghost{
-  border:1px solid rgba(40,30,20,.14);
-  background:rgba(255,255,255,.55);
-  color:rgba(34,28,22,.88);
-  border-radius:999px;
-  padding:10px 14px;
-  font-weight:900;
-}
-
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.muted{color:var(--muted)}
-.small{font-size:.9rem}
-hr{border:none;border-top:1px solid rgba(40,30,20,.10);margin:14px 0}
-
-input, textarea{
-  width:100%;
-  padding:10px;
-  border-radius:14px;
-  border:1px solid rgba(40,30,20,.14);
-  background:rgba(255,255,255,.70);
-  color:rgba(34,28,22,.92);
-  font-size:.92rem;
-  outline:none;
-  margin-top:8px;
-}
-textarea{resize:vertical;height:84px}
-
-/* Confetti */
-.confetti{position:fixed;width:10px;height:10px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg)}}
-
-/* Tabs */
-.tabs{
-  position:sticky;top:0;z-index:50;
-  padding:10px 12px;
-  backdrop-filter: blur(10px);
-  background:linear-gradient(180deg, rgba(250,247,242,.92), rgba(242,236,227,.70));
-  border-bottom:1px solid rgba(40,30,20,.10);
-}
-.tabbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.tabbtn{
-  border:none;
-  border-radius:999px;
-  padding:10px 14px;
-  font-weight:900;
-  background:rgba(255,255,255,.55);
-  color:rgba(34,28,22,.88);
-  border:1px solid rgba(40,30,20,.12);
-}
-.tabbtn.active{
-  background:linear-gradient(90deg,var(--accent2),var(--accent3));
-  color:#251b14;
-  border-color:transparent;
-}
-
-/* Workout card */
-.workout-card strong{font-size:1.03rem}
-.ex{
-  padding:12px;
-  border-radius:18px;
-  border:1px solid rgba(40,30,20,.12);
-  background:rgba(255,255,255,.60);
-}
-.ex-title{
-  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
-}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.pill{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:8px 10px;border-radius:999px;
-  border:1px solid rgba(40,30,20,.12);
-  background:rgba(255,255,255,.55);
-  font-weight:900;
-  color:rgba(34,28,22,.85);
-  font-size:.86rem;
-}
-.pill a{ text-decoration:none }
-.ex-meta{margin-top:6px;color:rgba(34,28,22,.70);line-height:1.45}
-
-.ex-rule{
-  margin-top:10px;
-  padding:10px 12px;
-  border-radius:16px;
-  border:1px solid rgba(40,30,20,.12);
-  background:rgba(242,236,227,.65);
-  color:rgba(34,28,22,.78);
-  line-height:1.5;
-}
-.ex-rule b{color:rgba(34,28,22,.92)}
-.savebar{margin-top:14px}
-
-/* Fixed bottom CTA */
-.fixed-cta{
-  position:fixed;left:0;right:0;
-  bottom: calc(14px + env(safe-area-inset-bottom));
-  display:flex;justify-content:center;z-index:100;
-  pointer-events:none;
-  padding:0 14px;
-}
-.fixed-cta .btn{
-  pointer-events:auto;
-  width:min(720px,100%);
-  padding:16px 18px;
-  font-size:1.05rem;
-  box-shadow:0 18px 55px rgba(50,35,25,.18);
-}
-
-/* Tracker bubbles */
-.lb{
-  aspect-ratio:1;
-  border-radius:999px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(40,30,20,.14);
-  background:rgba(255,255,255,.55);
-  font-weight:900;
-  color:rgba(34,28,22,.70);
-  cursor:pointer;
-  user-select:none;
-}
-.lb.on{
-  background:linear-gradient(180deg, rgba(154,167,144,.92), rgba(216,195,165,.92));
-  color:#251b14;
-}
-
-/* Water tracker */
-.progress-wrap{
-  margin-top:12px;
-  padding:12px;
-  border-radius:16px;
-  border:1px solid rgba(40,30,20,.12);
-  background:rgba(255,255,255,.55);
-}
-.progress-bar{
-  height:12px;
-  border-radius:999px;
-  background:rgba(40,30,20,.08);
-  overflow:hidden;
-  border:1px solid rgba(40,30,20,.10);
-}
-.progress-bar > div{
-  height:100%;
-  width:0%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--accent2),var(--accent));
-}
-.kpi{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-top:10px;
-  color:rgba(34,28,22,.74);
-  font-weight:900;
-}
-.chip{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 12px;border-radius:999px;
-  border:1px solid rgba(40,30,20,.12);
-  background:rgba(255,255,255,.55);
-  font-weight:900;
-}
-    </style>
-
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-
-<header>
-  <h1>Bailey’s Guide to Wellness</h1>
-  <div class="subtitle" id="dailyHeader"></div>
-</header>
-
-<div class="tabs">
-  <div class="tabbar">
-    <button class="tabbtn active" data-tab="tab-home" onclick="showTab('tab-home')">Home</button>
-    <button class="tabbtn" data-tab="tab-workouts" onclick="showTab('tab-workouts')">Workouts</button>
-    <button class="tabbtn" data-tab="tab-photos" onclick="showTab('tab-photos')">Photos</button>
-  </div>
-</div>
-
-<div class="container">
-
-<!-- ===================== HOME TAB ===================== -->
-<div id="tab-home">
-
-  <div class="card">
-    <strong>Goal:</strong> 166 → 140<br>
-    <strong>Plan:</strong> 4×/week · 30 minutes<br>
-    <strong>Non-negotiables:</strong> Protein · Steps · Sleep<br><br>
-    <em>If you do only ONE thing today:</em><br>
-    <strong id="oneThing"></strong>
-  </div>
-
-  <div class="card">
-    <strong>Today’s Motivation</strong>
-    <p id="dailyQuote" style="margin:10px 0 0"></p>
-    <p style="font-style:italic;margin:10px 0 0" id="dailyVerse"></p>
-  </div>
-
-  <!-- NEW: Spotify + Vibe -->
-  <div class="card">
-    <strong>Focus Mode</strong>
-    <p class="muted small" style="margin-top:8px;">Hit play, hit the workout, get out. (Vibe button works best on Android/PWA.)</p>
-    <div class="row" style="margin-top:12px;">
-      <button class="btn" onclick="openSpotify()">Open Spotify 🎧</button>
-      <button class="btn-ghost" onclick="buzz([25,40,25])">Vibe Test 📳</button>
-      <button class="btn-ghost" onclick="buzz([60])">Micro Pep Talk Vibe ✨</button>
-    </div>
-    <div class="muted small" style="margin-top:10px;" id="vibeNote"></div>
-  </div>
-
-  <!-- NEW: Water Tracker -->
-  <div class="card">
-    <strong>Water Tracker</strong>
-    <p class="muted small" style="margin-top:8px;">Daily goal: <span id="waterGoalText"></span>. Quick-add your sips. Saves locally per day.</p>
-
-    <div class="progress-wrap">
-      <div class="progress-bar"><div id="waterBarFill"></div></div>
-      <div class="kpi">
-        <div><span id="waterNow"></span> • <span id="waterLeft"></span></div>
-        <div class="chip">Streak: <span id="waterStreak">0</span> 🔥</div>
-      </div>
-
-      <div class="row" style="margin-top:12px;">
-        <button class="btn-ghost" onclick="addWater(8)">+8 oz</button>
-        <button class="btn-ghost" onclick="addWater(16)">+16 oz</button>
-        <button class="btn-ghost" onclick="addWater(24)">+24 oz</button>
-        <button class="btn-ghost" onclick="undoWater()">Undo</button>
-      </div>
-
-      <div class="row" style="margin-top:10px;">
-        <input id="waterCustom" inputmode="numeric" placeholder="Custom oz (ex: 12)" style="flex:1;min-width:160px;margin-top:0" />
-        <button class="btn" onclick="addWaterCustom()">Add</button>
-        <button class="btn-ghost" onclick="resetWater()">Reset</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <strong>Weekly Check-In</strong>
-    <input id="ciWeight" placeholder="Weight" />
-    <input id="ciWaist" placeholder="Waist (optional)" />
-    <textarea id="ciWins" placeholder="Wins this week"></textarea>
-    <textarea id="ciStruggles" placeholder="Struggles"></textarea>
-    <button class="btn" style="margin-top:12px;width:100%" onclick="saveCheckIn()">Save Check-In</button>
-  </div>
-
-  <div class="card">
-    <strong>Daily Checklist</strong>
-    <p class="muted small" style="margin-top:8px;">Tap to check off. This is the “correlates” part: do these daily, and the goal happens.</p>
-    <div id="checklist" style="display:grid;gap:10px;margin-top:12px;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;">
-      <span id="checkMetaText" style="color:rgba(255,255,255,.70);font-weight:900;font-size:.95rem;">0 / 4 done</span>
-      <button class="btn-ghost" onclick="resetToday()">Reset today</button>
-    </div>
-  </div>
-
-  <div class="card" id="stackCard">
-    <strong>Daily Stack (Simple)</strong>
-    <p class="muted" style="margin-top:8px;">Keep it basic. Easy beats perfect.</p>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Morning (06:50)</strong>
-      <div class="muted" style="margin-top:6px;">• Water (big glass)</div>
-      <div class="muted">• Electrolytes (optional)</div>
-      <div class="muted">• Multivitamin (if you take one)</div>
-    </div>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Workout Window</strong>
-      <div class="muted" style="margin-top:6px;">• Protein after (shake or meal)</div>
-      <div class="muted">• Creatine daily (optional)</div>
-    </div>
-
-    <div style="margin-top:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-      <strong>Night (Wind-down)</strong>
-      <div class="muted" style="margin-top:6px;">• Stretch 3–5 minutes</div>
-      <div class="muted">• Magnesium glycinate (optional)</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <strong>The 26 lb Countdown</strong>
-    <p class="muted" style="margin-top:8px;">Tap a bubble when you lose a pound.</p>
-    <div id="trackerGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:12px;"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;">
-      <span id="trackerCount" style="color:rgba(255,255,255,.70);font-weight:1000;">0 / 26 complete</span>
-      <button class="btn-ghost" onclick="resetProgress()">Reset</button>
-    </div>
-  </div>
-
-  <div class="section-label">THE DAILY FLOW</div>
-  <div class="card">
-    <div style="display:grid;gap:12px;">
-      <div><strong>06:50</strong> — Wake & Hydrate <span class="muted">• see stack</span></div>
-      <div><strong>07:15</strong> — Daughter drop-off</div>
-      <div><strong>08:30</strong> — Son drop-off (M/W/F)</div>
-      <div><strong>12:30</strong> — High-protein lunch <span class="muted">• protein + veg</span></div>
-      <div><strong>14:30</strong> — Pickup</div>
-
-      <div style="margin-top:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-        <strong>Workout Window (Primary)</strong><br>
-        <span class="muted">3:15–3:45 • 30 minutes</span>
-      </div>
-
-      <div style="padding:12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10)">
-        <strong>Workout Window (Backup)</strong><br>
-        <span class="muted">7:45–8:15 • after kids down</span>
-      </div>
-
-      <div><strong>15:30</strong> — Snack: Protein <span class="muted">• shake, jerky, turkey roll-ups</span></div>
-      <div><strong>21:00</strong> — Wind-down <span class="muted">• stretch / cozy walk</span></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <strong>Today’s Workout Log</strong>
-    <textarea id="workoutLog" placeholder="Weights, reps, notes…"></textarea>
-    <button class="btn" style="margin-top:12px;width:100%" onclick="saveWorkout()">Save Workout</button>
-  </div>
-
-</div>
-
-<!-- ===================== WORKOUTS TAB ===================== -->
-<div id="tab-workouts" style="display:none;">
-
-  <div class="section-label">THE MOVES (30 MIN)</div>
-
-  <div class="card">
-    <strong>How it should feel (the universal rules)</strong>
-    <ul style="margin-top:10px;color:rgba(255,255,255,.78);line-height:1.55">
-      <li><strong>You SHOULD feel:</strong> muscles working, controlled burn, steady breathing.</li>
-      <li><strong>You should NOT feel:</strong> sharp joint pain, pinching in low back/neck, numbness/tingling.</li>
-      <li><strong>Form rule:</strong> if form breaks, stop the set—even if reps aren’t done.</li>
-      <li><strong>Progress rule:</strong> when you hit the <strong>top reps/time</strong> with good form, add <strong>+1–2 reps</strong> or <strong>+2.5–5 lbs</strong> next time.</li>
-    </ul>
-  </div>
-
-  <!-- MONDAY -->
-  <div class="card workout-card">
-    <div class="row" style="justify-content:space-between;align-items:center;">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">Daily</div>
       <div>
-        <strong>Monday: Leg Day</strong>
-        <div class="muted" style="margin-top:4px;">Warm-up (5 min): brisk walk + hip circles</div>
-      </div>
-      <button class="btn-ghost" onclick="toggleWorkout('monday')"><span id="chev-monday">▾</span> <span id="lbl-monday">Collapse</span></button>
-    </div>
-
-    <div id="body-monday" style="margin-top:14px;">
-      <div class="ex" data-exid="monday-goblet">
-        <div class="ex-title">
-          <div><strong>1) Goblet Squat</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=MeIiIdhvXT4" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">10–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Do:</em> chest up, knees track over toes. <em>Don’t:</em> collapse knees inward.</div>
-        <div class="ex-rule"><b>How it should feel:</b> quads + glutes working, stable core. <b>Progress:</b> hit 12 reps for all sets → add +2.5–5 lbs next time.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="monday-lunge">
-        <div class="ex-title">
-          <div><strong>2) Reverse Lunge</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=UH_7o9S3xqU" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">8–10/leg</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> glute/quad. <em>Don’t:</em> slam knee or lean forward.</div>
-        <div class="ex-rule"><b>How it should feel:</b> front leg doing the work; steady balance. <b>Progress:</b> hit 10/leg clean → add +1–2 reps/leg or hold light dumbbells.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="monday-hiphinge">
-        <div class="ex-title">
-          <div><strong>3) DB Romanian Deadlift</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=0Y8JdZ5xX9Q" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">10–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> hamstrings stretching. <em>Don’t:</em> round back.</div>
-        <div class="ex-rule"><b>How it should feel:</b> hamstrings + glutes loaded, back neutral. <b>Progress:</b> 12 reps all sets → add +5 lbs total next time.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="monday-finisher">
-        <div class="ex-title">
-          <div><strong>4) Wall Sit (Finisher)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=-cdph8hv0O0" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">2 rounds</span>
-            <span class="pill">45s hold</span>
-          </div>
-        </div>
-        <div class="ex-meta">2 rounds: 45s hold + 15s rest</div>
-        <div class="ex-rule"><b>How it should feel:</b> deep quad burn without knee pain. <b>Progress:</b> add +5–10 seconds per round next time.</div>
-      </div>
-
-      <div class="savebar">
-        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+        <div class="title">My Daily Guide</div>
+        <div class="subtitle" id="subtitle">Operating System</div>
       </div>
     </div>
+    <div class="actions">
+      <button class="btn icon-only" onclick="document.getElementById('searchBar').classList.toggle('hidden')">🔍</button>
+      <button class="btn icon-only" id="btnReminders">🔔</button>
+    </div>
+  </header>
+
+  <div class="search-toolbar hidden" id="searchBar">
+     <input id="searchInput" placeholder="Search supplements, routines..." />
   </div>
 
-  <!-- TUESDAY -->
-  <div class="card workout-card">
-    <div class="row" style="justify-content:space-between;align-items:center;">
-      <div>
-        <strong>Tuesday: Core + Pilates</strong>
-        <div class="muted" style="margin-top:4px;">Warm-up (3 min): cat/cow + deep breaths</div>
-      </div>
-      <button class="btn-ghost" onclick="toggleWorkout('tuesday')"><span id="chev-tuesday">▾</span> <span id="lbl-tuesday">Collapse</span></button>
-    </div>
-
-    <div id="body-tuesday" style="margin-top:14px;">
-      <div class="ex" data-exid="tuesday-birddog">
-        <div class="ex-title">
-          <div><strong>1) Bird Dog</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">10–12/side</span>
-          </div>
+  <main class="wrap">
+    
+    <section class="card hero-card">
+      <div class="hero-header">
+        <div>
+           <h1 id="todayTitle">Today</h1>
+           <p class="muted" id="todayMeta">...</p>
         </div>
-        <div class="ex-meta"><em>Feel:</em> deep core. <em>Don’t:</em> rotate hips.</div>
-        <div class="ex-rule"><b>How it should feel:</b> abs bracing + glute firing; slow control. <b>Progress:</b> add +2 reps/side or slow the tempo (3 seconds out).</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="tuesday-deadbug">
-        <div class="ex-title">
-          <div><strong>2) Dead Bug</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=4C7xZ2tR2iY" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">8–10/side</span>
-          </div>
+        <div class="streak-badge">
+           🔥 <span id="streakValue">0</span>
         </div>
-        <div class="ex-meta"><em>Feel:</em> abs holding spine. <em>Don’t:</em> low back arch.</div>
-        <div class="ex-rule"><b>How it should feel:</b> abs “locked in,” ribs down. <b>Progress:</b> add +1–2 reps/side or extend legs a bit lower.</div>
       </div>
-
-      <hr>
-
-      <div class="ex" data-exid="tuesday-sideplank">
-        <div class="ex-title">
-          <div><strong>3) Side Plank</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=K2VljzCC16g" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">20–30s/side</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> obliques. <em>Don’t:</em> sink shoulder.</div>
-        <div class="ex-rule"><b>How it should feel:</b> side abs + glute on the bottom side working. <b>Progress:</b> add +5 seconds/side next time.</div>
+      
+      <div class="progress-bar-wrap">
+         <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
       </div>
-
-      <hr>
-
-      <div class="ex" data-exid="tuesday-glutebridge">
-        <div class="ex-title">
-          <div><strong>4) Glute Bridge</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">12–15 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> glutes at the top. <em>Don’t:</em> push through low back.</div>
-        <div class="ex-rule"><b>How it should feel:</b> glutes squeezing, ribs down. <b>Progress:</b> hit 15 reps → add a pause (2 seconds at top) or add weight on hips.</div>
+      <div class="progress-text">
+         <span id="doneValue">0/0</span> Tasks Completed
       </div>
+    </section>
 
-      <div class="savebar">
-        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
-      </div>
-    </div>
+    <div id="view"></div>
+    
+    <div style="height: 100px;"></div>
+  </main>
+
+  <nav class="tabs" id="tabs">
+    </nav>
+
+  <div class="fab-menu">
+     <button class="btn ghost small" id="btnExport">Backup</button>
+     <button class="btn ghost small" id="btnImport">Restore</button>
+     <button class="btn ghost small" id="btnResetDay">Reset</button>
   </div>
 
-  <!-- WEDNESDAY -->
-  <div class="card workout-card">
-    <div class="row" style="justify-content:space-between;align-items:center;">
-      <div>
-        <strong>Wednesday: Upper Body</strong>
-        <div class="muted" style="margin-top:4px;">Warm-up (5 min): arm circles + light rows</div>
-      </div>
-      <button class="btn-ghost" onclick="toggleWorkout('wednesday')"><span id="chev-wednesday">▾</span> <span id="lbl-wednesday">Collapse</span></button>
-    </div>
-
-    <div id="body-wednesday" style="margin-top:14px;">
-      <div class="ex" data-exid="wed-press">
-        <div class="ex-title">
-          <div><strong>1) DB Overhead Press</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/shorts/D4vIbA7o0oQ" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">8–10 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> shoulders/triceps. <em>Don’t:</em> arch low back.</div>
-        <div class="ex-rule"><b>How it should feel:</b> shoulders burning, core tight. <b>Progress:</b> hit 10 reps all sets → add +2.5–5 lbs next time.</div>
+  <dialog id="contextDialog" class="bottom-sheet">
+    <form method="dialog" class="dialog-inner">
+      <h3>☀️ Morning Check-in</h3>
+      <p class="muted">Adjust the plan based on your reality.</p>
+      
+      <div class="section-title">Pain / Recovery</div>
+      <div class="chip-group" id="painOptions">
+          <label class="chip green">
+            <input type="radio" name="pain" value="green" checked> <span>Green (Good)</span>
+          </label>
+          <label class="chip yellow">
+            <input type="radio" name="pain" value="yellow"> <span>Yellow (Sore)</span>
+          </label>
+          <label class="chip red">
+            <input type="radio" name="pain" value="red"> <span>Red (Injured)</span>
+          </label>
       </div>
 
-      <hr>
-
-      <div class="ex" data-exid="wed-row">
-        <div class="ex-title">
-          <div><strong>2) DB Row</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=roCP6wCXPqo" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">10–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> lats/upper back. <em>Don’t:</em> shrug shoulder to ear.</div>
-        <div class="ex-rule"><b>How it should feel:</b> back pulling, elbow driving to hip. <b>Progress:</b> hit 12 reps → add +5 lbs or add a 1-second squeeze at top.</div>
+      <div class="section-title">Environment</div>
+      <div class="chip-group">
+          <select id="envSelect" class="android-select">
+            <option value="home">🏠 Home</option>
+            <option value="gym">🏋️ Gym</option>
+            <option value="noequipment">🚫 No Equip</option>
+            <option value="travel">✈️ Travel</option>
+          </select>
       </div>
 
-      <hr>
-
-      <div class="ex" data-exid="wed-lateral">
-        <div class="ex-title">
-          <div><strong>3) Lateral Raise</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=3VcKaXpzqRo" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">3 sets</span>
-            <span class="pill">12–15 reps</span>
-          </div>
-        </div>
-        <div class="ex-meta"><em>Feel:</em> side delts. <em>Don’t:</em> swing weights.</div>
-        <div class="ex-rule"><b>How it should feel:</b> shoulders burning without neck tension. <b>Progress:</b> hit 15 reps clean → add +1–2 reps OR slightly heavier weight.</div>
+      <div class="dialog-actions">
+        <button class="btn text-btn" id="btnMinimumDialog" type="button">Minimum Day</button>
+        <button class="btn primary-btn" id="btnSaveContext" value="ok">Start Day</button>
       </div>
+    </form>
+  </dialog>
 
-      <hr>
+  <dialog id="remindersDialog" class="bottom-sheet">
+    <form method="dialog" class="dialog-inner">
+      <h3>🔔 Notifications</h3>
+      
+      <label class="row-switch">
+         <span>Enable Reminders</span>
+         <input type="checkbox" id="remindersEnabled" />
+      </label>
+      
+      <label class="row-switch">
+         <span>Mute Today</span>
+         <input type="checkbox" id="remindersOffToday" />
+      </label>
 
-      <div class="ex" data-exid="wed-arms">
-        <div class="ex-title">
-          <div><strong>4) Arms Finisher (Curls + Kickbacks)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=ykJmrZ5v0Oo" target="_blank" rel="noopener">▶ Curls</a></span>
-            <span class="pill"><a href="https://www.youtube.com/watch?v=6SS6K3lAwZ8" target="_blank" rel="noopener">▶ Kickbacks</a></span>
-            <span class="pill">2 rounds</span>
-          </div>
-        </div>
-        <div class="ex-meta">2 rounds: curls 12 + tricep kickbacks 12 (minimal rest)</div>
-        <div class="ex-rule"><b>How it should feel:</b> arm pump, controlled reps. <b>Progress:</b> add +2 reps each OR slightly heavier weight next week.</div>
+      <div class="grid-2">
+         <div class="input-group">
+            <label>Morning</label>
+            <input type="time" id="timeMorning" />
+         </div>
+         <div class="input-group">
+            <label>Midday</label>
+            <input type="time" id="timeMidday" />
+         </div>
+         <div class="input-group">
+            <label>Evening</label>
+            <input type="time" id="timeEvening" />
+         </div>
+         <div class="input-group">
+            <label>Bed</label>
+            <input type="time" id="timeBed" />
+         </div>
       </div>
+      
+      <div class="section-title" style="margin-top:10px">Skip Blocks</div>
+      <div id="skipButtons" class="chip-group"></div>
 
-      <div class="savebar">
-        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
+      <div class="dialog-actions">
+        <button class="btn text-btn" value="cancel">Close</button>
+        <button class="btn primary-btn" id="btnSaveReminders" value="ok">Save</button>
       </div>
-    </div>
-  </div>
+    </form>
+  </dialog>
 
-  <!-- THURSDAY -->
-  <div class="card workout-card">
-    <div class="row" style="justify-content:space-between;align-items:center;">
-      <div>
-        <strong>Thursday: Full Body Circuit</strong>
-        <div class="muted" style="margin-top:4px;">Warm-up (5 min): walk + squats + shoulder rolls</div>
+  <dialog id="importDialog" class="dialog">
+    <form method="dialog" class="dialog-inner">
+      <h3>Restore Data</h3>
+      <textarea id="importArea" placeholder='Paste backup code here...'></textarea>
+      <div class="dialog-actions">
+        <button class="btn text-btn" value="cancel">Cancel</button>
+        <button class="btn primary-btn" id="btnImportConfirm" value="ok">Import</button>
       </div>
-      <button class="btn-ghost" onclick="toggleWorkout('thursday')"><span id="chev-thursday">▾</span> <span id="lbl-thursday">Collapse</span></button>
-    </div>
+    </form>
+  </dialog>
 
-    <div id="body-thursday" style="margin-top:14px;">
-      <div class="muted"><strong>Circuit:</strong> do moves 1–4, rest 60–90s, repeat for <strong>3 rounds</strong>.</div>
-
-      <hr>
-
-      <div class="ex" data-exid="thu-squat">
-        <div class="ex-title">
-          <div><strong>1) Squat (bodyweight or DB goblet)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=DlS-GAF8Edg" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">10–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-rule"><b>How it should feel:</b> quads + glutes, steady feet. <b>Progress:</b> add +2 reps or hold a light dumbbell.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="thu-push">
-        <div class="ex-title">
-          <div><strong>2) Push (incline push-up or DB press)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/shorts/wD1M-f69Yy8" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">8–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-rule"><b>How it should feel:</b> chest/triceps working, core tight. <b>Progress:</b> lower the incline OR add reps.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="thu-pull">
-        <div class="ex-title">
-          <div><strong>3) Pull (row)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=roCP6wCXPqo" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">10–12 reps</span>
-          </div>
-        </div>
-        <div class="ex-rule"><b>How it should feel:</b> upper back + lats, not neck. <b>Progress:</b> add +5 lbs or add a 1-second squeeze.</div>
-      </div>
-
-      <hr>
-
-      <div class="ex" data-exid="thu-core">
-        <div class="ex-title">
-          <div><strong>4) Core (mountain climbers)</strong></div>
-          <div class="pills">
-            <span class="pill"><a href="https://www.youtube.com/watch?v=hq_0YlyfqGM" target="_blank" rel="noopener">▶ YouTube</a></span>
-            <span class="pill">20–30 seconds</span>
-          </div>
-        </div>
-        <div class="ex-rule"><b>How it should feel:</b> abs bracing + breathing controlled. <b>Progress:</b> add +5 seconds or keep hips steadier.</div>
-      </div>
-
-      <div class="savebar">
-        <button class="btn" style="width:100%" onclick="saveExerciseLogs()">Save Today’s Exercise Logs</button>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ===================== PHOTOS TAB ===================== -->
-<div id="tab-photos" style="display:none;">
-
-  <div class="card">
-    <strong>Progress Photos (max 3/day)</strong>
-    <p class="muted small" style="margin-top:8px;">Stored locally on this device (not uploaded anywhere).</p>
-    <input type="file" accept="image/*" multiple onchange="addPhotos(event)">
-    <div id="photoPreview" style="margin-top:12px;"></div>
-  </div>
-
-  <div class="section-label">PROGRESS PHOTO GALLERY</div>
-  <div class="card">
-    <strong>Browse saved days</strong>
-    <div id="galleryList" style="display:grid;gap:12px;margin-top:12px;"></div>
-    <button class="btn-ghost" style="margin-top:12px;width:100%" onclick="clearAllPhotos()">Clear ALL stored photos</button>
-  </div>
-
-</div>
-
-</div><!-- /.container -->
-
-<div class="fixed-cta">
-  <button class="btn" onclick="fireConfetti()">I CRUSHED IT! 🎊</button>
-</div>
-
-<script>
-/** =========================
- *  TABS
- *  ========================= */
-function showTab(id){
-  ["tab-home","tab-workouts","tab-photos"].forEach(t=>{
-    const el = document.getElementById(t);
-    if (el) el.style.display = (t===id) ? "block" : "none";
-  });
-  document.querySelectorAll(".tabbtn").forEach(b=>{
-    b.classList.toggle("active", b.getAttribute("data-tab")===id);
-  });
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-/** =========================
- *  STORAGE
- *  ========================= */
-const STORAGE = {
-  progress: "bgwProgress26",
-  today: "bgwDailyChecklist",
-  checkins: "bgwWeeklyCheckins",
-  photos: "bgwDailyPhotos",
-  workoutLog: "bgwWorkoutLog",
-  exerciseLogs: "bgwExerciseLogs",
-  workoutCollapsed: "bgwWorkoutCollapsed",
-  water: "bgwWaterDaily",
-  waterStreak: "bgwWaterStreak"
-};
-
-function safeParse(json, fallback) {
-  try { return JSON.parse(json) ?? fallback; } catch { return fallback; }
-}
-function todayKey() {
-  const d = new Date();
-  const yyyy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const dd = String(d.getDate()).padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
-}
-function prettyDay() {
-  const d = new Date();
-  return d.toLocaleDateString(undefined, { weekday:"long", month:"short", day:"numeric" });
-}
-function dateSeed() {
-  const k = todayKey();
-  let h = 0;
-  for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0;
-  return h;
-}
-
-/** Header */
-document.getElementById("dailyHeader").textContent = `Her Era • ${prettyDay()} Edition`;
-
-/** One thing */
-const oneThings = [
-  "Hit your protein today (even if nothing else is perfect).",
-  "Take a 10-minute walk. Momentum counts.",
-  "Do the workout — 30 minutes. In and out.",
-  "Hydrate early so you don’t crash later.",
-  "Sleep is the secret weapon. Protect it."
-];
-document.getElementById("oneThing").textContent = oneThings[dateSeed() % oneThings.length];
-
-/** Quote + Verse */
-const quotes = [
-  "Small steps, loud results.",
-  "Consistency is the real glow-up.",
-  "You don’t need motivation. You need a plan.",
-  "Do it messy. Do it anyway.",
-  "Future Bailey is cheering for you.",
-  "You’re not behind. You’re building."
-];
-const verses = [
-  "“I can do all things through Christ who strengthens me.” — Philippians 4:13",
-  "“Let us not grow weary of doing good...” — Galatians 6:9",
-  "“Be strong and courageous...” — Joshua 1:9",
-  "“The joy of the Lord is your strength.” — Nehemiah 8:10",
-  "“Commit your work to the Lord...” — Proverbs 16:3",
-  "“He gives strength to the weary...” — Isaiah 40:29"
-];
-document.getElementById("dailyQuote").textContent = quotes[dateSeed() % quotes.length];
-document.getElementById("dailyVerse").textContent = verses[(dateSeed() + 2) % verses.length];
-
-/** =========================
- *  SPOTIFY + VIBRATION
- *  ========================= */
-function buzz(pattern=[20,30,20]){
-  const note = document.getElementById("vibeNote");
-  if (!("vibrate" in navigator)) {
-    if (note) note.textContent = "Vibration isn’t supported on this device/browser.";
-    return;
-  }
-  navigator.vibrate(pattern);
-  if (note) note.textContent = "Vibe sent ✅ (If you feel nothing, try adding this to Home Screen as a PWA.)";
-}
-function openSpotify(){
-  // Try to open the Spotify app first; fallback to web.
-  const query = encodeURIComponent("workout");
-  const appUrl = `spotify:search:${query}`;
-  const webUrl = `https://open.spotify.com/search/${query}`;
-
-  // App attempt
-  const t = setTimeout(()=>{ window.open(webUrl, "_blank", "noopener"); }, 550);
-  window.location.href = appUrl;
-
-  // If navigation succeeds, timeout likely won't matter; if it fails, web opens.
-  setTimeout(()=>clearTimeout(t), 700);
-}
-
-/** =========================
- *  WATER TRACKER
- *  ========================= */
-const WATER_GOAL_OZ = 80; // change if you want
-document.getElementById("waterGoalText").textContent = `${WATER_GOAL_OZ} oz`;
-
-function loadWaterAll(){ return safeParse(localStorage.getItem(STORAGE.water), {}); }
-function saveWaterAll(all){ localStorage.setItem(STORAGE.water, JSON.stringify(all)); }
-
-function getWaterToday(){
-  const all = loadWaterAll();
-  const k = todayKey();
-  const entry = all[k] || { oz: 0, history: [] };
-  return { all, k, entry };
-}
-
-function calcWaterStreak(all){
-  // streak = consecutive days (ending yesterday or today) hitting goal
-  const keys = Object.keys(all).sort(); // ascending
-  if (!keys.length) return 0;
-
-  // build set for quick lookup
-  const map = new Map(keys.map(k => [k, all[k]]));
-  // walk backward from today
-  let streak = 0;
-  let d = new Date();
-  for (let i = 0; i < 365; i++){
-    const yyyy = d.getFullYear();
-    const mm = String(d.getMonth() + 1).padStart(2,"0");
-    const dd = String(d.getDate()).padStart(2,"0");
-    const key = `${yyyy}-${mm}-${dd}`;
-    const v = map.get(key);
-    if (v && (v.oz || 0) >= WATER_GOAL_OZ) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else {
-      break;
+  <script src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
     }
-  }
-  return streak;
-}
-
-function renderWater(){
-  const { all, k, entry } = getWaterToday();
-  const oz = Math.max(0, Number(entry.oz || 0));
-  const pct = Math.max(0, Math.min(100, Math.round((oz / WATER_GOAL_OZ) * 100)));
-
-  document.getElementById("waterNow").textContent = `${oz} oz`;
-  const left = Math.max(0, WATER_GOAL_OZ - oz);
-  document.getElementById("waterLeft").textContent = left ? `${left} oz left` : `Goal hit 🎯`;
-  document.getElementById("waterBarFill").style.width = `${pct}%`;
-
-  const streak = calcWaterStreak(all);
-  document.getElementById("waterStreak").textContent = String(streak);
-
-  // gentle reward vibration when goal reached
-  if (oz >= WATER_GOAL_OZ && !entry.goalBuzzed){
-    entry.goalBuzzed = true;
-    all[k] = entry;
-    saveWaterAll(all);
-    buzz([30,60,30]);
-    fireConfetti();
-  }
-}
-
-function addWater(amount){
-  const { all, k, entry } = getWaterToday();
-  const n = Math.max(0, Number(amount || 0));
-  entry.oz = Math.max(0, Math.round((Number(entry.oz || 0) + n)));
-  entry.history = entry.history || [];
-  entry.history.push(n);
-  entry.goalBuzzed = Boolean(entry.goalBuzzed) && entry.oz >= WATER_GOAL_OZ;
-  all[k] = entry;
-  saveWaterAll(all);
-  renderWater();
-}
-
-function addWaterCustom(){
-  const inp = document.getElementById("waterCustom");
-  const val = Number((inp.value || "").trim());
-  if (!val || val <= 0) { alert("Enter a number of ounces (ex: 12)."); return; }
-  addWater(val);
-  inp.value = "";
-}
-
-function undoWater(){
-  const { all, k, entry } = getWaterToday();
-  entry.history = entry.history || [];
-  const last = entry.history.pop();
-  if (!last) { alert("Nothing to undo."); return; }
-  entry.oz = Math.max(0, Math.round((Number(entry.oz || 0) - last)));
-  // allow buzz again if they go below goal
-  if (entry.oz < WATER_GOAL_OZ) entry.goalBuzzed = false;
-  all[k] = entry;
-  saveWaterAll(all);
-  renderWater();
-}
-
-function resetWater(){
-  if (!confirm("Reset today’s water tracker?")) return;
-  const { all, k } = getWaterToday();
-  all[k] = { oz: 0, history: [], goalBuzzed: false };
-  saveWaterAll(all);
-  renderWater();
-}
-
-renderWater();
-
-/** =========================
- *  DAILY CHECKLIST
- *  ========================= */
-const checklistEl = document.getElementById("checklist");
-const checkMetaText = document.getElementById("checkMetaText");
-
-const defaultChecklist = [
-  { id: "water", title: "Hydrate", sub: "Water + morning essentials" },
-  { id: "protein", title: "Protein", sub: "High-protein lunch + snack" },
-  { id: "move", title: "Movement", sub: "Workout or 10-min walk" },
-  { id: "sleep", title: "Recovery", sub: "Wind-down + stretch" }
-];
-
-function loadDailyState() {
-  const all = safeParse(localStorage.getItem(STORAGE.today), {});
-  const key = todayKey();
-  return { all, key, state: all[key] || { done: {} } };
-}
-function saveDailyState(all) { localStorage.setItem(STORAGE.today, JSON.stringify(all)); }
-
-function renderChecklist() {
-  const { all, key, state } = loadDailyState();
-  checklistEl.innerHTML = "";
-  let doneCount = 0;
-
-  defaultChecklist.forEach(item => {
-    const isDone = Boolean(state.done[item.id]);
-    if (isDone) doneCount++;
-
-    const row = document.createElement("div");
-    row.style.padding = "12px";
-    row.style.borderRadius = "16px";
-    row.style.border = "1px solid rgba(255,255,255,.12)";
-    row.style.background = isDone ? "rgba(166,255,77,.10)" : "rgba(255,255,255,.06)";
-    row.style.display = "flex";
-    row.style.gap = "12px";
-    row.style.alignItems = "flex-start";
-    row.style.cursor = "pointer";
-
-    row.innerHTML = `
-      <div style="width:24px;height:24px;border-radius:8px;border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;">
-        ${isDone ? "✓" : ""}
-      </div>
-      <div>
-        <div style="font-weight:1000">${item.title}</div>
-        <div style="color:rgba(255,255,255,.70);font-size:.9rem;margin-top:2px">${item.sub}</div>
-      </div>
-    `;
-
-    row.addEventListener("click", () => {
-      state.done[item.id] = !Boolean(state.done[item.id]);
-      all[key] = state;
-      saveDailyState(all);
-      renderChecklist();
-      if (state.done[item.id]) fireConfetti();
-    });
-
-    checklistEl.appendChild(row);
-  });
-
-  checkMetaText.textContent = `${doneCount} / ${defaultChecklist.length} done`;
-}
-function resetToday() {
-  if (!confirm("Reset today’s checklist?")) return;
-  const { all, key } = loadDailyState();
-  delete all[key];
-  saveDailyState(all);
-  renderChecklist();
-}
-renderChecklist();
-
-/** =========================
- *  26 LB TRACKER
- *  ========================= */
-const grid = document.getElementById("trackerGrid");
-const totalPounds = 26;
-let progress = safeParse(localStorage.getItem(STORAGE.progress), []);
-
-function renderCount() {
-  document.getElementById("trackerCount").textContent = `${progress.length} / ${totalPounds} complete`;
-}
-function saveProgress() {
-  localStorage.setItem(STORAGE.progress, JSON.stringify(progress));
-  renderCount();
-}
-function resetProgress() {
-  if (!confirm("Reset the 26-lb tracker?")) return;
-  progress = [];
-  localStorage.removeItem(STORAGE.progress);
-  document.querySelectorAll(".lb").forEach(b => b.classList.remove("on"));
-  renderCount();
-}
-for (let i = 0; i < totalPounds; i++) {
-  const bubble = document.createElement("div");
-  bubble.className = "lb";
-  bubble.textContent = i + 1;
-
-  if (progress.includes(i)) bubble.classList.add("on");
-
-  bubble.addEventListener("click", () => {
-    const idx = i;
-    const checked = progress.includes(idx);
-    if (checked) {
-      progress = progress.filter(p => p !== idx);
-      bubble.classList.remove("on");
-    } else {
-      progress.push(idx);
-      bubble.classList.add("on");
-      fireConfetti();
-    }
-    saveProgress();
-  });
-
-  grid.appendChild(bubble);
-}
-renderCount();
-
-/** =========================
- *  WORKOUT COLLAPSE
- *  ========================= */
-let workoutCollapsed = safeParse(localStorage.getItem(STORAGE.workoutCollapsed), {});
-function toggleWorkout(day) {
-  const body = document.getElementById(`body-${day}`);
-  const chev = document.getElementById(`chev-${day}`);
-  const lbl = document.getElementById(`lbl-${day}`);
-  const isCollapsed = Boolean(workoutCollapsed[day]);
-  const next = !isCollapsed;
-
-  workoutCollapsed[day] = next;
-  localStorage.setItem(STORAGE.workoutCollapsed, JSON.stringify(workoutCollapsed));
-
-  if (next) {
-    body.style.display = "none";
-    chev.textContent = "▸";
-    lbl.textContent = "Expand";
-  } else {
-    body.style.display = "block";
-    chev.textContent = "▾";
-    lbl.textContent = "Collapse";
-  }
-}
-["monday","tuesday","wednesday","thursday"].forEach(day => {
-  if (workoutCollapsed[day]) toggleWorkout(day);
-});
-
-/** =========================
- *  WEEKLY CHECK-IN
- *  ========================= */
-function weekKey(d=new Date()){
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
-  const weekNo = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-  return `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,"0")}`;
-}
-function saveCheckIn(){
-  const all = safeParse(localStorage.getItem(STORAGE.checkins), {});
-  const key = weekKey();
-  all[key] = {
-    date: todayKey(),
-    weight: document.getElementById("ciWeight").value.trim(),
-    waist: document.getElementById("ciWaist").value.trim(),
-    wins: document.getElementById("ciWins").value.trim(),
-    struggles: document.getElementById("ciStruggles").value.trim()
-  };
-  localStorage.setItem(STORAGE.checkins, JSON.stringify(all));
-  alert("Weekly check-in saved locally ✅");
-}
-
-/** =========================
- *  WORKOUT LOG (TEXT)
- *  ========================= */
-function saveWorkout(){
-  const all = safeParse(localStorage.getItem(STORAGE.workoutLog), {});
-  all[todayKey()] = document.getElementById("workoutLog").value;
-  localStorage.setItem(STORAGE.workoutLog, JSON.stringify(all));
-  alert("Workout log saved locally ✅");
-}
-
-/** =========================
- *  EXERCISE LOG INPUTS + SAVE
- *  ========================= */
-function ensureLogInputs(){
-  document.querySelectorAll(".ex[data-exid]").forEach(ex=>{
-    if(ex.querySelector("input.log")) return;
-    const wrap = document.createElement("div");
-    wrap.style.marginTop = "10px";
-    wrap.innerHTML = `
-      <input class="log" placeholder="Last time: ___ (lbs/reps/time)" />
-      <input class="log" placeholder="Today: ___ (lbs/reps/time)" />
-    `;
-    ex.appendChild(wrap);
-  });
-}
-ensureLogInputs();
-
-function saveExerciseLogs(){
-  const all = safeParse(localStorage.getItem(STORAGE.exerciseLogs), {});
-  const key = todayKey();
-  all[key] = all[key] || {};
-
-  document.querySelectorAll(".ex[data-exid]").forEach(ex => {
-    const id = ex.getAttribute("data-exid");
-    const inputs = Array.from(ex.querySelectorAll("input.log"))
-      .map(i => i.value.trim())
-      .filter(Boolean);
-    if (inputs.length) all[key][id] = inputs;
-  });
-
-  localStorage.setItem(STORAGE.exerciseLogs, JSON.stringify(all));
-  alert("Exercise logs saved locally ✅");
-}
-
-/** =========================
- *  PHOTOS (LOCAL)
- *  ========================= */
-function loadPhotosAll(){ return safeParse(localStorage.getItem(STORAGE.photos), {}); }
-function savePhotosAll(all){ localStorage.setItem(STORAGE.photos, JSON.stringify(all)); }
-
-async function fileToCompressedDataURL(file){
-  const img = document.createElement("img");
-  const url = URL.createObjectURL(file);
-  img.src = url;
-  await new Promise(res => img.onload = res);
-
-  const maxSide = 900;
-  let { width:w, height:h } = img;
-  const scale = Math.min(1, maxSide / Math.max(w,h));
-  w = Math.round(w * scale); h = Math.round(h * scale);
-
-  const canvas = document.createElement("canvas");
-  canvas.width = w; canvas.height = h;
-  const ctx = canvas.getContext("2d");
-  ctx.drawImage(img, 0, 0, w, h);
-
-  URL.revokeObjectURL(url);
-  return canvas.toDataURL("image/jpeg", 0.75);
-}
-
-async function addPhotos(e){
-  const files = Array.from(e.target.files || []);
-  if (!files.length) return;
-
-  const all = loadPhotosAll();
-  const key = todayKey();
-  all[key] = all[key] || [];
-
-  const room = 3 - all[key].length;
-  if (room <= 0) { alert("Max 3 photos saved for today."); return; }
-
-  const slice = files.slice(0, room);
-  for (const f of slice){
-    const dataUrl = await fileToCompressedDataURL(f);
-    all[key].push(dataUrl);
-  }
-
-  savePhotosAll(all);
-  renderTodayPhotos();
-  renderGallery();
-  e.target.value = "";
-}
-
-function renderTodayPhotos(){
-  const all = loadPhotosAll();
-  const key = todayKey();
-  const wrap = document.getElementById("photoPreview");
-  if (!wrap) return;
-  wrap.innerHTML = "";
-
-  const list = all[key] || [];
-  if (!list.length) {
-    wrap.innerHTML = `<div class="muted">No photos saved today yet.</div>`;
-    return;
-  }
-
-  const row = document.createElement("div");
-  row.style.display = "flex";
-  row.style.gap = "10px";
-  row.style.flexWrap = "wrap";
-
-  list.forEach((src, idx) => {
-    const box = document.createElement("div");
-    box.style.position = "relative";
-    box.style.width = "96px";
-    box.style.height = "96px";
-    box.style.borderRadius = "16px";
-    box.style.overflow = "hidden";
-    box.style.border = "1px solid rgba(255,255,255,.12)";
-    box.style.background = "rgba(255,255,255,.06)";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.style.width = "100%";
-    img.style.height = "100%";
-    img.style.objectFit = "cover";
-
-    const del = document.createElement("button");
-    del.textContent = "✕";
-    del.style.position = "absolute";
-    del.style.top = "6px";
-    del.style.right = "6px";
-    del.style.border = "none";
-    del.style.borderRadius = "10px";
-    del.style.padding = "6px 8px";
-    del.style.background = "rgba(0,0,0,.55)";
-    del.style.color = "white";
-    del.style.fontWeight = "1000";
-    del.onclick = () => removePhotoForDay(key, idx);
-
-    box.appendChild(img);
-    box.appendChild(del);
-    row.appendChild(box);
-  });
-
-  wrap.appendChild(row);
-  const note = document.createElement("div");
-  note.style.marginTop = "10px";
-  note.style.color = "rgba(255,255,255,.70)";
-  note.style.fontWeight = "900";
-  note.textContent = `${list.length} / 3 saved today`;
-  wrap.appendChild(note);
-}
-
-function removePhotoForDay(dayKey, index){
-  const all = loadPhotosAll();
-  if (!all[dayKey]) return;
-  all[dayKey].splice(index, 1);
-  savePhotosAll(all);
-  renderTodayPhotos();
-  renderGallery();
-}
-
-function renderGallery(){
-  const all = loadPhotosAll();
-  const listEl = document.getElementById("galleryList");
-  if (!listEl) return;
-  listEl.innerHTML = "";
-
-  const keys = Object.keys(all).sort().reverse();
-  if (!keys.length){
-    listEl.innerHTML = `<div class="muted">No photos saved yet.</div>`;
-    return;
-  }
-
-  keys.forEach(k => {
-    const photos = all[k] || [];
-    const card = document.createElement("div");
-    card.style.padding = "12px";
-    card.style.borderRadius = "16px";
-    card.style.border = "1px solid rgba(255,255,255,.12)";
-    card.style.background = "rgba(255,255,255,.06)";
-
-    const top = document.createElement("div");
-    top.style.display = "flex";
-    top.style.justifyContent = "space-between";
-    top.style.alignItems = "center";
-    top.innerHTML = `<strong>${k}</strong><span class="muted" style="font-weight:1000">${photos.length} photo(s)</span>`;
-    card.appendChild(top);
-
-    const row = document.createElement("div");
-    row.style.display = "flex";
-    row.style.gap = "10px";
-    row.style.marginTop = "10px";
-    row.style.flexWrap = "wrap";
-
-    photos.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.style.width = "86px";
-      img.style.height = "86px";
-      img.style.objectFit = "cover";
-      img.style.borderRadius = "14px";
-      img.style.border = "1px solid rgba(255,255,255,.12)";
-      row.appendChild(img);
-    });
-
-    card.appendChild(row);
-    listEl.appendChild(card);
-  });
-}
-
-function clearAllPhotos(){
-  if (!confirm("This deletes ALL stored photos on this device. Continue?")) return;
-  localStorage.removeItem(STORAGE.photos);
-  renderTodayPhotos();
-  renderGallery();
-}
-
-renderTodayPhotos();
-renderGallery();
-
-/** =========================
- *  CONFETTI
- *  ========================= */
-function fireConfetti() {
-  const colors = ["#ff3bd4", "#39f5ff", "#a6ff4d", "#8a5cff", "#ff9f2e"];
-  for (let i = 0; i < 56; i++) {
-    const conf = document.createElement("div");
-    conf.classList.add("confetti");
-    conf.style.left = Math.random() * 100 + "vw";
-    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    conf.style.animationDuration = (Math.random() * 2 + 1.8) + "s";
-    conf.style.opacity = String(Math.random() * 0.6 + 0.4);
-    conf.style.top = "-12px";
-    conf.style.zIndex = 999;
-    document.body.appendChild(conf);
-    setTimeout(() => conf.remove(), 4200);
-  }
-}
-</script>
-
+  </script>
 </body>
-    </html>
+</html>
